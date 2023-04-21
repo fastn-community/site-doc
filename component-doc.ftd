@@ -20,7 +20,7 @@ package-name: fastn-community.github.io/site-doc
 
 -- site-doc.component-doc.body:
 
-To use `ke-value` component on your web package, add below into FASTN.ftd file:
+To use `key-value` component on your web package, add below into FASTN.ftd file:
 
 -- site-doc.component-doc.childs:
 
