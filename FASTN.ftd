@@ -1,9 +1,26 @@
 -- import: fastn
 
--- fastn.package: <user_name>.github.io/<repo_name>
+-- fastn.package: fastn-community.github.io/site-doc
 
 -- fastn.dependency: fifthtry.github.io/doc-site as ds
--- fastn.dependency: fifthtry.github.io/bling as bling
+-- fastn.dependency: fifthtry.github.io/footer
 
--- fastn.auto-import: bling/chat as chat
 -- fastn.auto-import: ds
+-- fastn.auto-import: fifthtry.github.io/footer as fastn-footer
+
+
+
+
+
+
+
+-- fastn.sitemap:
+
+
+# Home: index.html
+
+- site-doc: index.html
+- component-doc: /component-doc/
+
+# GitHub
+  url: https://github.com/fastn-community/site-doc
