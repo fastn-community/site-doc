@@ -1,0 +1,83 @@
+-- import: fastn-community.github.io/site-doc
+
+
+-- ds.page: 
+document-title: Welcome to your fastn powered website.
+show-footer: true
+
+-- ds.page.footer:
+
+-- fastn-footer.fastn-footer:
+copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
+site-logo: $fastn-footer.fastn-logo
+powered-by-text: Powered by
+powered-by-link: https://fastn.io/
+
+-- end: ds.page.footer
+
+-- site-doc.component-doc: Component Page
+package-name: fastn-community.github.io/site-doc
+
+-- site-doc.component-doc.body:
+
+To use `ke-value` component on your web package, add below into FASTN.ftd file:
+
+-- site-doc.component-doc.childs:
+
+-- ds.markdown:
+
+Once above dependency is added, then import it inside your `.ftd` files.
+
+-- site-doc.key-value:
+key: -- import:
+value: fastn-community.github.io/site-doc
+
+-- end: site-doc.component-doc.childs
+
+-- site-doc.component-doc.examples:
+
+-- ds.rendered: Example 1: Basic usage
+
+-- ds.rendered.input:
+
+\-- site-doc.key-value:
+key: -- import:
+value: fastn-community.github.io/site-doc
+
+-- ds.rendered.output:
+
+-- site-doc.key-value:
+key: -- import:
+value: fastn-community.github.io/site-doc
+
+-- end: ds.rendered.output
+
+-- end: ds.rendered
+
+-- end: site-doc.component-doc.examples
+
+-- site-doc.component-doc.fields:
+
+-- ds.h2: Fields / attributes
+
+Below are details of all fields / attributes of this component.
+
+-- site-doc.component-field: `key`
+type: String
+default: Default
+
+This is a default attribute of the `key-value` component, used to add a key to
+it.
+
+-- site-doc.component-field: `value`
+type: String
+default: Default
+
+This is a default attribute of the `key-value` component, used to add a value to
+the `key` and appears in a row to key.
+
+-- end: site-doc.component-doc.fields
+
+-- end: site-doc.component-doc
+
+-- end: ds.page

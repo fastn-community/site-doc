@@ -1,51 +1,412 @@
 -- import: fastn-community.github.io/site-doc/assets
 
 
+-- ds.page: 
+document-title: Welcome to your fastn powered website.
+show-footer: true
 
--- ds.page: Welcome to your [FASTN site](https://fastn.io/)
+-- ds.page.footer:
+
+-- fastn-footer.fastn-footer:
+copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
+site-logo: $fastn-footer.fastn-logo
+powered-by-text: Powered by
+powered-by-link: https://fastn.io/
+
+-- end: ds.page.footer
+
+-- doc-home: Welcome to your fastn powered website.
+github-url: https://github.com/fastn-community/site-doc
+color-scheme: Default $inherited
+typography: fifthtry.github.io/doc-site-typography
+current-package: fastn-community.github.io/site-doc
+
+-- ds.h2: How to install fastn?
+
+Please, [click here](https://fastn.io/install/) to read fastn installation
+documentation.
+
+
+-- ds.h2: How to edit your fastn site on Github?
+
+Please, [click here](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor)
+to read GitHub web editor documentation.
+
+
+-- ds.h2: How to create a new page?
+
+To create a new page follow below steps:
+
+- Create new `.ftd` file into your project folder
+- Add its link inside `FASTN.ftd` sitemap
+- Import your `lib.ftd` file inside it using `-- import <your-project-name>/lib
+- add `-- lib.page:` inside your `.ftd` file and add title, body to page
+  component.
+- To check it on your local server run `fastn server` from terminal or command
+  prompt. 
+- Access e.g. `http://127.0.0.1:8000/your-ftd-file` into browser.
+
+
+-- ds.h2: How to update an existing page?
+
+Simply open the `.ftd` file into any code editor and change its content. For
+e.g. you want to change page title inside `index.ftd` file then open it in code
+editor OR sublime-text editor and change `-- lib.page: <title>` `<title>` with
+new `<title>`.
+
+
+-- end: doc-home
+
+-- end: ds.page
+
+
+
+
+
+
+
+
+
+
+-- component doc-home:
+caption title:
+string github-url:
+string color-scheme:
+string typography:
+string current-package: 
+optional body body: 
+children doc-childs:
 
 -- ftd.column:
-align-self: center
+width: fill-container
 
--- chat.message-left: Yo! I am Amit Upadhyay, CEO of FifthTry, welcome to the new world of FTD.
+-- ftd.text: $doc-home.title
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
+region: h1
+border-bottom-width.px: 1 
+width: fill-container
+border-color: $inherited.colors.border
 
--- ds.markdown: 
+-- ftd.column:
+border-width.px: 1
+border-color: $inherited.colors.border
+width: fill-container
+border-radius.px: 3
+margin-top.px: 12
+padding.px: 12
+spacing.fixed.px: 16
 
-You reached the right place, and from here let me assure you, your FTD journey is going superfast. 🙂
+-- ftd.row:
+spacing.fixed.px: 12
 
--- end: chat.message-left
+-- ftd.text: Package name:
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+min-width.fixed.px: 170
 
--- chat.message-right:  😊 Liking this chat component?
+-- ftd.text: $doc-home.current-package
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
 
--- ds.markdown:
+-- end: ftd.row
 
-[Click here to learn more](https://fifthtry.github.io/bling/chat/)
-👍
+-- ftd.row:
+spacing.fixed.px: 12
 
--- end: chat.message-right
+-- ftd.text: GitHub URL:
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+min-width.fixed.px: 170
+
+-- ftd.text: $doc-home.github-url
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- end: ftd.row
+
+-- ftd.row:
+spacing.fixed.px: 12
+
+-- ftd.text: Color Scheme:
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+min-width.fixed.px: 170
+
+-- ftd.text: $doc-home.color-scheme
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- end: ftd.row
+
+-- ftd.row:
+spacing.fixed.px: 12
+
+-- ftd.text: Typography:
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+min-width.fixed.px: 170
+
+-- ftd.text: $doc-home.typography
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- end: ftd.row
 
 -- end: ftd.column
 
--- ds.h1: How to use?
+-- ftd.text: 
+if: { doc-home.body != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-top.px: 24
 
-It's very simple like making a sandwich. Create new `.ftd` file and just say:
+$doc-home.body
 
--- ds.code: `-- ds.page` 
+-- ftd.column:
+width: fill-container
+margin-top.px: 24
+children: $doc-home.doc-childs
+spacing.fixed.px: 24
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: doc-home
+
+
+
+
+
+
+
+
+
+
+-- component component-doc:
+caption title: 
+string package-name:
+optional body body:
+ftd.ui list examples:
+ftd.ui list fields:
+children childs: 
+
+-- ftd.column:
+width: fill-container
+
+-- ftd.text: $component-doc.title
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
+region: h1
+border-bottom-width.px: 1 
+width: fill-container
+border-color: $inherited.colors.border
+
+-- ftd.row:
+border-width.px: 1
+border-color: $inherited.colors.border
+width: fill-container
+border-radius.px: 3
+margin-top.px: 12
+padding.px: 12
+spacing.fixed.px: 16
+
+-- ftd.text: Package name:
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+
+-- ftd.text: $component-doc.package-name
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- end: ftd.row
+
+-- ftd.text: 
+if: { component-doc.body != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-top.px: 24
+margin-bottom.px: 16
+
+$component-doc.body
+
+-- ds.code:
+lang: ftd
+body: $dependency(key = -- fastn.dependency:, v = $component-doc.package-name)
+
+-- ftd.column:
+width: fill-container
+children: $component-doc.childs
+spacing.fixed.px: 16
+
+-- end: ftd.column
+
+-- ftd.column:
+width: fill-container
+children: $component-doc.examples
+spacing.fixed.px: 16
+
+-- end: ftd.column
+
+-- ftd.column:
+width: fill-container
+children: $component-doc.fields
+spacing.fixed.px: 24
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: component-doc
+
+
+
+
+
+
+
+
+
+
+-- component key-value:
+string value:
+string key: 
+
+-- ftd.column:
+width: fill-container
+
+-- ds.code:
 lang: ftd
 
-\-- ds.page: Your page title goes here
+$dependency(key = $key-value.key, v = $key-value.value)
 
-Your page content goes here.
+-- end: ftd.column
 
-
--- ds.h1: Need sidebar at right side of page?
-
-Here it is, [use this document](https://fifthtry.github.io/doc-site/docs/right-sidebar/).
+-- end: key-value
 
 
--- ds.h1: 👀 Learn FTD and become a pro?
 
-You are one click away, just check [our documentation](https://fastn.dev/) and 
-dont forget to jump into our [FifthTry Discord server](https://discord.gg/bucrdvptYd).
 
--- end: ds.page
+
+
+
+
+
+
+-- component example:
+body body:
+
+-- ftd.column:
+width: fill-container
+
+-- ds.rendered:
+
+-- ds.rendered.input:
+
+$example.body
+
+-- ds.rendered.output:
+
+-- ftd.text: some code here...
+
+-- end: ds.rendered.output
+
+-- end: ds.rendered
+
+-- end: ftd.column
+
+-- end: example
+
+
+
+
+
+
+
+
+
+
+-- component component-field:
+caption title:
+string type:
+string default:
+body body:
+
+-- ftd.column:
+width: fill-container
+
+-- ftd.text: $component-field.title
+role: $inherited.types.heading-small
+color: $inherited.colors.text
+
+-- ftd.text: 
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-top.px: 12
+
+$component-field.body
+
+-- ftd.row:
+width: fill-container
+align-content: center
+border-bottom-width.px: 2
+border-color: $inherited.colors.border
+margin-top.px: 24
+padding-bottom.px: 10
+
+-- ftd.text: Attribute name
+role: $inherited.types.button-medium
+color: $inherited.colors.text-strong
+width.fixed.percent: 33.33
+
+-- ftd.text: Type
+role: $inherited.types.button-medium
+color: $inherited.colors.text-strong
+width.fixed.percent: 33.33
+
+-- ftd.text: Default / Optional
+role: $inherited.types.button-medium
+color: $inherited.colors.text-strong
+width.fixed.percent: 33.33
+
+-- end: ftd.row
+
+-- ftd.row:
+width: fill-container
+align-content: center
+border-bottom-width.px: 1
+border-color: $inherited.colors.border
+margin-top.px: 12
+padding-bottom.px: 12
+
+-- ftd.text: $component-field.title
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+width.fixed.percent: 33.33
+
+-- ftd.text: $component-field.type
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+width.fixed.percent: 33.33
+
+-- ftd.text: $component-field.default
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+width.fixed.percent: 33.33
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: component-field
+
+
+
+
+-- string dependency(v): 
+string key:
+string v: 
+
+key + " " + v
+ 
