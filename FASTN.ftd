@@ -23,6 +23,7 @@
 
 - site-doc: index.html
 - component-doc: /component-doc/
+- doc: /doc/
 
 # GitHub
   url: https://github.com/fastn-community/site-doc

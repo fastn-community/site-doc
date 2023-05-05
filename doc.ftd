@@ -1,17 +1,12 @@
--- import: fastn-community.github.io/site-doc
 -- import: fastn
 -- import: fastn/processors as pr
-
--- pr.toc-item list empty-toc: 
+-- import: fastn-community.github.io/site-doc
 
 -- integer $current-tab: 1
 
--- ds.page:
-$widthfill: true
+-- site-doc.doc-home: Component Page
 
 -- main-row-component:
-
--- left-bar:
 
 -- column-container:
 
@@ -75,7 +70,7 @@ default: Default
 
 -- end: main-row-component
 
--- end: ds.page
+-- end: site-doc.doc-home
 
 
 
@@ -183,7 +178,9 @@ width: fill-container
 if: { current-tab == 1 }
 spacing.fixed.px: 24
 
--- tf.h3: Output of above basic example:
+-- ftd.text: Output of above basic example:
+role: $inherited.types.heading-small
+color: $inherited.colors.text
 
 -- emoji-list: Lorem ipsum dolor sit amet, consectetur adipiscing 
 emoji: 💫
@@ -475,209 +472,6 @@ role: $inherited.types.copy-small
 
 
 
-
--- component left-bar:
-optional ftd.color background-color: $inherited.colors.background.step-1
-pr.toc-item list left-bar: $items
-
--- ftd.column:
-min-height.fixed.px: 450
-padding-vertical.px: 60
-padding-horizontal.px: 60
-background.solid: $left-bar.background-color
-border-radius.px: 10
-
--- left-bar-loop: 
-title: $obj.title
-url: $obj.url
-is-active: $obj.is-active
-sub-sections: $obj.children
-$loop$: $left-bar.left-bar as $obj
-
--- end: ftd.column
-
--- end: left-bar
-
-
-
-
-
-
-
-
-
-
--- component left-bar-loop:
-caption title:
-string url:
-boolean $shows-data: false
-boolean is-active: false
-pr.toc-item list sub-sections: $empty-toc
-
--- ftd.column:
-width: fill-container
-
--- left-bar-section: $left-bar-loop.title
-url: $left-bar-loop.url
-sub-sections: $left-bar-loop.sub-sections 
-
--- end: ftd.column
-
--- end: left-bar-loop
-
-
-
-
-
-
-
-
-
-
--- component left-bar-section:
-caption title:
-optional string url: /
-boolean is-active: false
-pr.toc-item list sub-sections: $empty-toc
-boolean show-toc: false
-boolean show-subsections: false
-
--- ftd.column:
-width.fixed.percent if { ftd.device == "mobile" && left-bar-section.show-subsections }: 50
-margin-bottom.px if { ftd.device == "mobile" }: 3
-spacing.fixed.px: 24
-
--- ftd.text: $left-bar-section.title
-if: { !left-bar-section.show-toc && ! left-bar-section.show-subsections }
-color: $inherited.colors.text-strong
-role: $inherited.types.copy-large
-link: $left-bar-section.url
-width: fill-container
-white-space: nowrap
-
--- left-bar-toc: 
-if: { !left-bar-section.show-toc }
-title: $obj.title
-url: $obj.url
-is-active: $obj.is-active
-toc: $empty-toc
-show-subsections: $left-bar-section.show-subsections 
-$loop$: $left-bar-section.sub-sections as $obj
-
--- end: ftd.column
-
--- end: left-bar-section
-
-
-
-
-
-
-
-
-
-
--- component left-bar-toc:
-caption title:
-optional string url: /
-boolean is-active: false
-ftd.color text-color: $inherited.colors.text-strong
-ftd.color active-text-color: $inherited.colors.text-strong 
-pr.toc-item list toc: $empty-toc
-children wrap:
-boolean show-subsections: false
-
--- ftd.column:
-
--- ftd.text: $left-bar-toc.title
-if: { !left-bar-toc.show-subsections }
-color: $inherited.colors.text
-role: $inherited.types.copy-large
-link: $left-bar-toc.url
-width: fill-container
-white-space: nowrap
-margin-bottom.px: 2
-
--- ftd.column:
-if: { !ftd.is_empty(left-bar-toc.toc) }
-spacing.fixed.px: 2
-
--- left-bar-toc-children: 
-title: $obj.title
-url: $obj.url
-is-active: $obj.is-active
-toc: $obj.children
-$loop$: $left-bar-toc.toc as $obj
-
--- ftd.column:
-children: $left-bar-toc.wrap
-
--- end: ftd.column
-
--- end: ftd.column
-
--- end: ftd.column
-
--- end: left-bar-toc
-
-
-
-
-
-
-
-
-
-
--- component left-bar-toc-children:
-caption title:
-optional string url: /
-boolean is-active: false
-ftd.color text-color: $inherited.colors.text-strong
-ftd.color active-text-color: $inherited.colors.text-strong 
-pr.toc-item list toc: $empty-toc
-children wrap:
-
--- ftd.column:
-spacing.fixed.px: 16
-
--- ftd.text: $left-bar-toc-children.title
-color: $inherited.colors.text
-role: $inherited.types.copy-small
-link: $left-bar-toc-children.url
-width: fill-container
-white-space: nowrap
-
--- ftd.column:
-if: { !ftd.is_empty(left-bar-toc-children.toc) }
-spacing.fixed.px: 16
-
--- left-bar-toc-children: 
-title: $obj.title
-url: $obj.url
-is-active: $obj.is-active
-$loop$: $left-bar-toc-children.toc as $obj
-
--- ftd.column:
-children: $left-bar-toc-children.wrap
-
--- end: ftd.column
-
--- end: ftd.column
-
--- end: ftd.column
-
--- end: left-bar-toc-children
-
-
-
-
-
-
-
-
-
-
 -- component code:
 optional caption caption:
 optional string download:
@@ -802,22 +596,3 @@ color: $inherited.colors.text.dark
 -- end: ftd.column
 
 -- end: code
-
-
-
-
-
-
-
-
-
-
--- pr.toc-item list items: 
-$processor$: pr.toc
-
-- Components: doc/
-  - Emoji-list: doc/
-  - Card: doc/
-  - Footer: doc/
-  - Header: doc/
-  - Banner: doc/
