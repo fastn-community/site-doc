@@ -1,4 +1,5 @@
 -- import: fastn
+-- import: fastn-community.github.io/site-doc/assets
 -- import: fastn/processors as pr
 -- import: fastn-community.github.io/site-doc
 
@@ -99,8 +100,22 @@ default: Default
 children tabs:
 
 -- ftd.row:
+width: fill-container
+border-bottom-width.px: 1
+border-bottom-color: $inherited.colors.border
+spacing: space-between
+
+-- ftd.row:
 spacing.fixed.px: 24
 children: $tabs.tabs
+
+-- end: ftd.row
+
+-- ftd.image:
+src: $assets.files.static.zoom.svg
+width.fixed.px: 20
+align-self: center
+cursor: pointer
 
 -- end: ftd.row
 
@@ -120,7 +135,7 @@ optional boolean $active-item: false
 integer index:
 
 -- ftd.column:
-padding-bottom.px: 7
+padding-bottom.px: 10
 border-bottom-width.px: 2
 $on-click$: $ftd.toggle($a = $tab.active-item)
 $on-click$: $ftd.set-integer($a = $current-tab, v = $tab.index)
