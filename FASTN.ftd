@@ -3,14 +3,19 @@
 -- fastn.package: fastn-community.github.io/site-doc
 
 -- fastn.dependency: fifthtry.github.io/doc-site as ds
--- fastn.dependency: fifthtry.github.io/footer
--- fastn.dependency: fifthtry.github.io/package-doc
+-- fastn.dependency: fastn-community.github.io/pretty-cs as cs
+-- fastn.dependency: fastn-community.github.io/opensans-typography as typo
 
+-- fastn.auto-import: fastn
 -- fastn.auto-import: ds
--- fastn.auto-import: fifthtry.github.io/footer as fastn-footer
--- fastn.auto-import: fifthtry.github.io/package-doc as pd
--- fastn.auto-import: fifthtry.github.io/package-doc/typography as tf
--- fastn.auto-import: fifthtry.github.io/package-doc/code-block as cb
+-- fastn.auto-import: cs
+-- fastn.auto-import: typo
+
+
+
+
+
+
 
 -- fastn.sitemap:
 

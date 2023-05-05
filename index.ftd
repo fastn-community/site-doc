@@ -1,19 +1,13 @@
 -- import: fastn-community.github.io/site-doc/assets
+-- import: fastn/processors as pr
+
+-- pr.sitemap-data sitemap:
+$processor$: pr.sitemap
 
 
--- ds.page: 
-document-title: Welcome to your fastn powered website.
-show-footer: true
-
--- ds.page.footer:
-
--- fastn-footer.fastn-footer:
-copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
-site-logo: $fastn-footer.fastn-logo
-powered-by-text: Powered by
-powered-by-link: https://fastn.io/
-
--- end: ds.page.footer
+-- ftd.image-src fastn-logo:
+light: https://fastn.io/-/fastn.io/images/fastn.svg
+dark: https://fastn.io/-/fastn.io/images/fastn-dark.svg
 
 -- doc-home: Welcome to your fastn powered website.
 github-url: https://github.com/fastn-community/site-doc
@@ -57,8 +51,6 @@ new `<title>`.
 
 -- end: doc-home
 
--- end: ds.page
-
 
 
 
@@ -70,12 +62,69 @@ new `<title>`.
 
 -- component doc-home:
 caption title:
-string github-url:
-string color-scheme:
-string typography:
-string current-package: 
+optional string github-url:
+optional string color-scheme:
+optional string typography:
+optional string current-package: 
 optional body body: 
 children doc-childs:
+string site-title: Documentation
+pr.toc-item list toc: $sitemap.toc
+pr.toc-item list sections: $sitemap.sections
+ftd.color-scheme colors: $cs.main
+ftd.type-data types: $typo.types
+
+-- ftd.column:
+width: fill-container
+background.solid: $inherited.colors.background.base
+
+-- ftd.column:
+width: fill-container
+padding-vertical.px: 24
+padding-horizontal.px: 48
+background.solid: $inherited.colors.background.step-2
+align-content: center
+
+-- ftd.row:
+width: fill-container
+
+-- ftd.row:
+width: fill-container
+
+-- ftd.text: $doc-home.site-title
+role: $inherited.types.heading-small
+color: $inherited.colors.cta-secondary.text
+align-self: center
+
+-- end: ftd.row
+
+-- ftd.row:
+align-self: end
+align-content: center
+spacing.fixed.px: 18
+
+-- header-links:
+$loop$: $doc-home.sections as $obj
+sections: $obj
+
+-- end: ftd.row
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- ftd.column:
+width: fill-container
+padding-horizontal.px: 48
+
+-- ftd.row:
+width: fill-container
+margin-vertical.px: 48
+align-self: center
+spacing.fixed.px: 48
+
+-- render-toc:
+toc-obj: $doc-home.toc
 
 -- ftd.column:
 width: fill-container
@@ -106,6 +155,7 @@ color: $inherited.colors.text-strong
 min-width.fixed.px: 170
 
 -- ftd.text: $doc-home.current-package
+if: { doc-home.current-package != NULL }
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
 
@@ -120,6 +170,7 @@ color: $inherited.colors.text-strong
 min-width.fixed.px: 170
 
 -- ftd.text: $doc-home.github-url
+if: { doc-home.github-url != NULL }
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
 
@@ -134,6 +185,7 @@ color: $inherited.colors.text-strong
 min-width.fixed.px: 170
 
 -- ftd.text: $doc-home.color-scheme
+if: { doc-home.color-scheme != NULL }
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
 
@@ -148,6 +200,7 @@ color: $inherited.colors.text-strong
 min-width.fixed.px: 170
 
 -- ftd.text: $doc-home.typography
+if: { doc-home.typography != NULL }
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
 
@@ -170,6 +223,18 @@ children: $doc-home.doc-childs
 spacing.fixed.px: 24
 
 -- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- fastn-footer:
+copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
+site-logo: $fastn-logo
+powered-by-text: Powered by
+powered-by-link: https://fastn.io/
 
 -- end: ftd.column
 
@@ -409,4 +474,281 @@ string key:
 string v: 
 
 key + " " + v
- 
+
+
+
+
+
+
+
+
+
+
+-- component header-links:
+pr.toc-item sections:
+
+-- ftd.column:
+
+-- ftd.text: $header-links.sections.title
+role: $inherited.types.copy-regular
+color: $inherited.colors.cta-secondary.text
+border-bottom-width.px: 2
+border-color: $inherited.colors.background.step-2
+border-color if { header-links.sections.is-active }: $inherited.colors.cta-primary.base
+link: $header-links.sections.url
+
+-- end: ftd.column
+
+-- end: header-links
+
+
+
+
+
+
+
+
+
+-- ftd.shadow body:
+color: #a9a7a5ba
+x-offset.px: 0
+y-offset.px: 0
+blur.px: 24
+inset-body: false
+spread.px: 0
+
+
+
+
+
+
+
+
+
+
+-- component fastn-footer:
+caption copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
+optional ftd.image-src site-logo: 
+optional string powered-by-text:
+optional string powered-by-link: 
+
+-- ftd.column:
+width: fill-container
+align-self: center
+align-content: center
+background.solid: $inherited.colors.background.step-2
+
+-- ftd.row:
+width: fill-container
+border-top-width.px: 1
+border-color: $inherited.colors.border
+padding-vertical.px: 20
+padding-horizontal.px: 20
+align-content: center
+
+-- ftd.row:
+width: fill-container
+
+-- ftd.text: 
+text: $fastn-footer.copyright
+color: $inherited.colors.cta-primary.base
+text-align: center
+role: $inherited.types.copy-small
+white-space: nowrap
+
+-- end: ftd.row
+
+-- ftd.row:
+align-self: end
+
+-- powered-by: $fastn-footer.powered-by-text
+fastn: $fastn-footer.site-logo
+link: $fastn-footer.powered-by-link
+
+-- end: ftd.row
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: fastn-footer
+
+
+
+
+
+
+
+
+
+
+-- component powered-by:
+caption title: Powered by
+ftd.image-src fastn: $fastn-logo
+string link: https://fastn.io/
+
+-- ftd.column:
+link: $powered-by.link
+
+-- ftd.text: $powered-by.title
+role: $inherited.types.fine-print
+color: $inherited.colors.cta-primary.base
+
+-- ftd.image:
+src: $powered-by.fastn
+max-width.fixed.px: 120
+height.fixed.px: 28
+margin-left.px: 18
+
+-- end: ftd.column
+
+-- end: powered-by
+
+
+
+
+
+
+
+
+
+
+-- component render-toc:
+pr.toc-item list toc-obj:
+
+-- ftd.column:
+width.fixed.percent: 25
+shadow: $body
+border-radius.px: 10
+padding.px: 24
+sticky: true
+top.px: 0
+left.px: 24
+min-width.fixed.percent: 20
+min-height.fixed.calc: 100vh - 0px
+height.fixed.vh: 100
+overflow-y: auto
+align-content: top-left
+background.solid: $inherited.colors.background.base
+
+-- toc-instance:
+$loop$: $render-toc.toc-obj as $obj
+toc: $obj
+
+-- end: ftd.column
+
+-- end: render-toc
+
+
+
+
+
+
+
+
+
+
+-- component toc-instance:
+pr.toc-item toc:
+pr.toc-item $toc-clone: *$toc-instance.toc
+
+-- ftd.column:
+width: fill-container
+
+-- ftd.row:
+width: fill-container
+spacing.fixed.px: 8
+margin-bottom.rem: 1
+$on-click$: $ftd.toggle($a = $toc-instance.toc-clone.is-open)
+
+-- ftd.image:
+if: { toc-instance.toc.font-icon != NULL }
+src: $toc-instance.toc.font-icon
+height.fixed.px: 14
+width: auto
+
+-- ftd.text:
+link if { toc-instance.toc.url != NULL }: $toc-instance.toc.url
+text: $toc-instance.toc.title
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+color if { toc-instance.toc.is-active }: $inherited.colors.cta-primary.base
+
+-- ftd.image:
+if: { !ftd.is_empty(toc-instance.toc.children) && toc-instance.toc-clone.is-open}
+src: $assets.files.static.open.svg
+height.fixed.px: 14
+width: auto
+align-self: center
+
+-- ftd.image:
+if: { !ftd.is_empty(toc-instance.toc.children) && !toc-instance.toc-clone.is-open}
+src: $assets.files.static.close.svg
+height.fixed.px: 14
+width: auto
+align-self: center
+
+-- end: ftd.row
+
+-- ftd.column:
+if: { !ftd.is_empty(toc-instance.toc.children) && toc-instance.toc-clone.is-open }
+margin-left.px: 12
+padding-left.px: 10
+border-left-width.px: 1
+border-color: $inherited.colors.border
+margin-top.rem: 0.5
+margin-bottom.rem: 1.25
+
+-- childrens:
+$loop$: $toc-instance.toc.children as $obj
+toc: $obj
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: toc-instance
+
+
+
+
+
+
+
+
+
+
+-- component childrens:
+pr.toc-item toc:
+
+-- ftd.column:
+width: fill-container
+
+-- ftd.row:
+width: fill-container
+spacing.fixed.px: 8
+margin-bottom.em: 0.5
+
+-- ftd.image:
+if: {childrens.toc.font-icon != NULL}
+src: $childrens.toc.font-icon
+height.fixed.px: 14
+width: auto
+
+-- ftd.text:
+link if { childrens.toc.url != NULL } : $childrens.toc.url
+text: $childrens.toc.title
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+color if { childrens.toc.is-active }: $inherited.colors.cta-primary.base
+
+-- end: ftd.row
+
+-- childrens:
+if: {!ftd.is_empty(childrens.toc.children) }
+$loop$: $childrens.toc.children as $obj
+toc: $obj
+
+-- end: ftd.column
+
+-- end: childrens
