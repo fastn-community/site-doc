@@ -5,6 +5,8 @@
 -- fastn.dependency: fifthtry.github.io/doc-site as ds
 -- fastn.dependency: fastn-community.github.io/pretty-cs as cs
 -- fastn.dependency: fastn-community.github.io/opensans-typography as typo
+-- fastn.dependency: fastn-community.github.io/pretty-ws
+-- fastn.dependency: fastn-community.github.io/winter-cs
 
 -- fastn.auto-import: fastn
 -- fastn.auto-import: ds
@@ -21,8 +23,9 @@
 
 # Home: index.html
 
-- site-doc: index.html
-- component-doc: /component-doc/
+- Site Doc: index.html
+- Component Doc: /component-doc/
 
 # GitHub
   url: https://github.com/fastn-community/site-doc
+  

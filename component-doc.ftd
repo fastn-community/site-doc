@@ -1,71 +1,150 @@
+-- import: fastn
+-- import: fastn-community.github.io/site-doc/assets
+-- import: fastn/processors as pr
 -- import: fastn-community.github.io/site-doc
-
+-- import: fastn-community.github.io/pretty-ws/lib as lp
+-- import: fastn-community.github.io/winter-cs
 
 -- site-doc.doc-home: Component Page
+github-url: https://github.com/fastn-community/pretty-ws
+color-scheme: fastn-community.github.io/winter-cs
+typography: fifthtry.github.io/doc-site-typography
+current-package: fastn-community.github.io/pretty-ws
 
--- site-doc.component-doc: Component Page
-package-name: fastn-community.github.io/site-doc
+-- site-doc.tabs:
 
--- site-doc.component-doc.body:
+-- site-doc.tab: Canvas
+index: 1
+$active-item: true
 
-To use `key-value` component on your web package, add below into FASTN.ftd file:
+-- site-doc.tab: Doc
+index: 2
 
--- site-doc.component-doc.childs:
+-- end: site-doc.tabs
 
--- ds.markdown:
+-- site-doc.output:
+types: $typo.types
+colors: $winter-cs.main
 
-Once above dependency is added, then import it inside your `.ftd` files.
+-- lp.promo-banner: At vero eos et accusamus et 
+cta-label: Sign me up
+src: https://fastn-community.github.io/pretty-ws/-/fastn-community.github.io/pretty-ws/assets/invoicing.png
+cta-url: https://fastn-community.github.io/pretty-ws/
+bg-color: $inherited.colors.custom.four
 
--- site-doc.key-value:
-key: -- import:
-value: fastn-community.github.io/site-doc
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. 
 
--- end: site-doc.component-doc.childs
+-- end: site-doc.output
 
--- site-doc.component-doc.examples:
+-- site-doc.component-doc: `promo-banner`
+package-link: https://fastn-community.github.io/pretty-ws/
+github-link: https://github.com/fastn-community/pretty-ws
+package-name: fastn-community.github.io/pretty-ws
+info: `-- promo-banner` can be used as homepage banner on your fastn projects.
 
--- ds.rendered: Example 1: Basic usage
+`promo-banner` is a new conversation experience via using FTD lang. To use
+`promo-banner` on your fastn package, add below into lines FASTN.ftd file:
 
--- ds.rendered.input:
+-- site-doc.code:
+lang: ftd
 
-\-- site-doc.key-value:
-key: -- import:
-value: fastn-community.github.io/site-doc
+\-- fastn.dependency: fastn-community.github.io/pretty-ws
+\-- fastn.auto-import: fastn-community.github.io/pretty-ws/lib as lp
 
--- ds.rendered.output:
 
--- site-doc.key-value:
-key: -- import:
-value: fastn-community.github.io/site-doc
+-- site-doc.header: Invocation
 
--- end: ds.rendered.output
+-- site-doc.code:
+lang: ftd
 
--- end: ds.rendered
+\-- lp.promo-banner: At vero eos et accusamus et 
+cta-label: Sign me up
+src: https://fastn-community.github.io/pretty-ws/-/fastn-community.github.io/pretty-ws/assets/invoicing.png
+cta-url: https://fastn-community.github.io/pretty-ws/
+bg-color: $inherited.colors.custom.four
 
--- end: site-doc.component-doc.examples
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. 
 
--- site-doc.component-doc.fields:
 
--- ds.h2: Fields / attributes
+-- site-doc.header: Properties
 
 Below are details of all fields / attributes of this component.
 
--- site-doc.component-field: `key`
+-- site-doc.component-property: `title`
+
+This is a default attribute of the `promo-banner` component. It’s used to add a
+title to `promo-banner` component.
+
+-- site-doc.component-property: `cta-label`
+
+This is a default attribute of the `promo-banner` component. It’s used to add a
+click to action button title.
+
+-- site-doc.component-property: `cta-url`
+
+This is a default attribute of the `promo-banner` component. It’s used to add a
+link to click to action button.
+
+-- site-doc.component-property: `src`
+
+This is a default attribute of the `promo-banner` component. Using `src`
+attribute image can be added.
+
+-- site-doc.property-header:
+
+-- site-doc.table-of-property: `title`
+type: caption 
+default: Default
+
+-- site-doc.table-of-property: `cta-label`
 type: String
 default: Default
 
-This is a default attribute of the `key-value` component, used to add a key to
-it.
-
--- site-doc.component-field: `value`
+-- site-doc.table-of-property: `cta-url`
 type: String
 default: Default
 
-This is a default attribute of the `key-value` component, used to add a value to
-the `key` and appears in a row to key.
+-- site-doc.table-of-property: `src`
+type: ftd.image-src
+default: Default
 
--- end: site-doc.component-doc.fields
+-- end: site-doc.property-header
 
 -- end: site-doc.component-doc
 
 -- end: site-doc.doc-home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
