@@ -1,41 +1,27 @@
-# Welcome to your [FASTN site](https://fastn.io/)
+# fastn documentation package
 
-FASTN Blank Package Template Repo
+## What is documentation?
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/fifthtry/fastn-heroku&env[DOWNLOAD_BASE_URL]=https://raw.githubusercontent.com/fastn-community/site-doc/main/)
-
-
-> 🧑‍🚀 **Seasoned traveler?** update this file. Enjoy!
-
-![doc-site](doc-site-example.png)
+Documentation of a component refers to a set of written materials that provide
+information about the component's features, functionality, and usage. This can
+include technical specifications, user manuals, installation guides, release
+notes, API documentation, and other relevant information.
 
 
-## 🚀 Project Structure
+## Why its required?
 
-Inside of your FASTN project, you'll see the following folders and files:
+Documentation is essential for software development, as it helps developers
+understand how a component works, how to integrate it with other components,
+and how to troubleshoot issues. It also helps end-users understand how to use
+the component effectively.
 
-```
-/
-├── .build/
-│   └── index.html
-├── .packages/
-│   └── fifthtry.github.io/
-│   	└── All downloaded dependencies
-│   	
-├── FASTN.ftd
-├── index.ftd
-└── README.md
-```
+Well-written documentation should be comprehensive, accurate, and easy to
+understand. It should provide clear instructions on how to use the component
+and how to resolve any issues that may arise. Additionally, documentation
+should be kept up-to-date and revised whenever there are changes to the
+component.
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `fastn build`            | FASTN builder installs all `FASTN` dependencies        |
-| `fastn serve`            | Starts local dev server at available port`localhost:8000`          |
-
+## [Click here](https://fastn-community.github.io/site-doc/) to see it
 
 
 ## 👀 Want to learn more?
