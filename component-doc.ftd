@@ -13,11 +13,11 @@ current-package: fastn-community.github.io/pretty-ws
 
 -- site-doc.tabs:
 
--- site-doc.tab: Canvas
+-- site-doc.tab: Demo
 index: 1
 $active-item: true
 
--- site-doc.tab: Doc
+-- site-doc.tab: Documentation
 index: 2
 
 -- end: site-doc.tabs
