@@ -4,18 +4,15 @@
 
 -- fastn.dependency: fifthtry.github.io/doc-site as ds
 -- fastn.dependency: fifthtry.github.io/footer
+-- fastn.dependency: fifthtry.github.io/package-doc
 
 -- fastn.auto-import: ds
 -- fastn.auto-import: fifthtry.github.io/footer as fastn-footer
-
-
-
-
-
-
+-- fastn.auto-import: fifthtry.github.io/package-doc as pd
+-- fastn.auto-import: fifthtry.github.io/package-doc/typography as tf
+-- fastn.auto-import: fifthtry.github.io/package-doc/code-block as cb
 
 -- fastn.sitemap:
-
 
 # Home: index.html
 
@@ -24,3 +21,4 @@
 
 # GitHub
   url: https://github.com/fastn-community/site-doc
+  

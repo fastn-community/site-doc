@@ -1,0 +1,823 @@
+-- import: fastn-community.github.io/site-doc
+-- import: fastn
+-- import: fastn/processors as pr
+
+-- pr.toc-item list empty-toc: 
+
+-- integer $current-tab: 1
+
+-- ds.page:
+$widthfill: true
+
+-- main-row-component:
+
+-- left-bar:
+
+-- column-container:
+
+-- row-container-18:
+
+-- tabs: Canvas
+index: 1
+$active-item: true
+
+-- tabs: Doc
+index: 2
+
+-- end: row-container-18
+
+-- output:
+
+-- component-doc: Emoji-List
+package-link: https://fifthtry.github.io/bling/
+github-link: https://fifthtry.github.io/bling/
+package-name: fifthtry.github.io/bling
+info: `-- emoji-list` can be used as part of blog posts. `emoji-list` is a new conversation experience via using FTD lang:
+
+`emoji-list` is a new conversation experience via using 
+FTD lang: To use `emoji-list` on your web package, add 
+below into FASTN.ftd file:
+
+-- code:
+lang: ftd
+copy: true
+
+\-- fastn.dependency: fifthtry.github.io/bling as bling
+\-- fastn.auto-import: bling/emoji-list as el
+
+-- properties: Properties:
+
+Below are details of all fields / attributes of this component.
+
+-- component-field: `key`
+
+This is a default attribute of the key-value component, 
+used to add a key to it.
+
+-- component-field: `value`
+
+This is a default attribute of the key-value component, 
+used to add a value to the key and appears in a row to key.
+
+-- property-header:
+
+-- table-of-property: `key`
+type: String
+default: Default
+
+-- table-of-property: `value`
+type: String
+default: Default
+
+-- end: property-header
+
+-- end: column-container
+
+-- end: main-row-component
+
+-- end: ds.page
+
+
+
+
+
+
+
+
+
+
+-- component main-row-component:
+children child:
+
+-- ftd.row:
+spacing.fixed.px: 24
+padding-bottom.px: 24
+children: $main-row-component.child
+
+-- end: main-row-component
+
+
+
+
+
+
+
+
+
+
+-- component row-container-18:
+children child:
+
+-- ftd.row:
+width: fill-container
+spacing.fixed.px: 18
+children: $row-container-18.child
+
+-- end: row-container-18
+
+
+
+
+
+
+
+
+
+
+-- component column-container:
+children child:
+
+-- ftd.column:
+width: fill-container
+spacing.fixed.px: 24
+children: $column-container.child
+
+-- end: column-container
+
+
+
+
+
+
+
+
+
+
+-- component tabs:
+caption title:
+optional boolean $active-item: false
+integer index:
+
+-- ftd.column:
+padding-bottom.px: 7
+border-bottom-width.px: 2
+$on-click$: $ftd.toggle($a = $tabs.active-item)
+$on-click$: $ftd.set-integer($a = $current-tab, v = $tabs.index)
+border-color if { tabs.index == current-tab }: $inherited.colors.accent.primary
+
+-- ftd.text: $tabs.title
+role: $inherited.types.button-large
+color: $inherited.colors.text
+color if { tabs.index == current-tab }: $inherited.colors.text-strong
+white-space: nowrap
+
+-- end: ftd.column
+
+-- end: tabs
+
+
+
+
+
+
+
+
+
+
+-- component output:
+
+-- ftd.row:
+width: fill-container
+
+-- ftd.column:
+if: { current-tab == 1 }
+spacing.fixed.px: 24
+
+-- tf.h3: Output of above basic example:
+
+-- emoji-list: Lorem ipsum dolor sit amet, consectetur adipiscing 
+emoji: 💫
+
+-- emoji-list: Lorem ipsum dolor sit amet, consectetur adipiscing 
+emoji: 🌟
+
+-- emoji-list: Lorem ipsum dolor sit amet, consectetur adipiscing 
+emoji: 💥
+
+-- emoji-list: Lorem ipsum dolor sit amet, consectetur adipiscing 
+emoji: 🌺
+
+-- emoji-list: Lorem ipsum dolor sit amet, consectetur adipiscing
+emoji: ✨
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: output
+
+
+
+
+
+
+
+
+
+
+-- component component-doc:
+optional caption title:
+optional string package-link:
+optional string github-link:
+optional string package-name:
+optional string info:
+optional body body:
+
+-- ftd.column:
+if: { current-tab == 2 }
+spacing.fixed.px: 24
+
+-- ftd.text: $component-doc.title
+link: $component-doc.package-link
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
+
+-- ftd.text: $component-doc.info
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+
+-- ftd.row:
+width: fill-container
+border-width.px: 1
+border-radius.px: 4
+border-color: $inherited.colors.border
+spacing.fixed.px: 24
+padding.px: 18
+
+-- ftd.text: Package Name:
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+
+-- ftd.text: $component-doc.package-name
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+
+-- end: ftd.row
+
+-- ftd.column:
+width: fill-container
+spacing.fixed.px: 18
+
+-- ftd.text: Implimentation:
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+border-bottom-width.px: 1
+border-color: $inherited.colors.text
+
+-- ftd.text:
+text: $component-doc.body
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: component-doc
+
+
+
+
+
+
+
+
+
+
+-- component properties:
+caption title:
+body info:
+
+-- ftd.column:
+if: { current-tab == 2 }
+width: fill-container
+spacing.fixed.px: 18
+
+-- ftd.text: $properties.title
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+
+-- ftd.text: $properties.info
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+
+-- end: ftd.column
+
+-- end: properties
+
+
+
+
+
+
+
+
+
+
+-- component component-field:
+caption title:
+body body:
+
+-- ftd.column:
+if: { current-tab == 2 }
+width: fill-container
+
+-- ftd.text: $component-field.title
+role: $inherited.types.heading-small
+color: $inherited.colors.text
+
+-- ftd.text: 
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-top.px: 12
+
+$component-field.body
+
+-- end: ftd.column
+
+-- end: component-field
+
+
+
+
+
+
+
+
+
+
+-- component property-header:
+children child:
+
+-- ftd.column:
+if: { current-tab == 2 }
+width: fill-container
+
+-- ftd.row:
+width: fill-container
+align-content: center
+border-bottom-width.px: 2
+border-color: $inherited.colors.border
+margin-top.px: 24
+padding-bottom.px: 10
+
+-- ftd.text: Attribute name
+role: $inherited.types.button-medium
+color: $inherited.colors.text-strong
+width.fixed.percent: 33.33
+
+-- ftd.text: Type
+role: $inherited.types.button-medium
+color: $inherited.colors.text-strong
+width.fixed.percent: 33.33
+
+-- ftd.text: Default / Optional
+role: $inherited.types.button-medium
+color: $inherited.colors.text-strong
+width.fixed.percent: 33.33
+
+-- end: ftd.row
+
+-- ftd.column:
+children: $property-header.child
+width.fixed.percent: 100
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: property-header
+
+
+
+
+
+
+
+
+
+
+-- component table-of-property:
+caption title:
+string type:
+string default:
+
+-- ftd.column:
+if: { current-tab == 2 }
+width: fill-container
+
+-- ftd.row:
+width: fill-container
+align-content: center
+border-bottom-width.px: 1
+border-color: $inherited.colors.border
+margin-top.px: 12
+padding-bottom.px: 12
+
+-- ftd.text: $table-of-property.title
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+width.fixed.percent: 33.33
+
+-- ftd.text: $table-of-property.type
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+width.fixed.percent: 33.33
+
+-- ftd.text: $table-of-property.default
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+width.fixed.percent: 33.33
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: table-of-property
+
+
+
+
+
+
+
+
+
+
+-- component emoji-list:
+string emoji:
+caption or body body: 
+
+-- ftd.row:
+max-width.fixed.px: 800
+margin-bottom.px: 12
+width: auto
+spacing.fixed.px: 10
+
+-- ftd.text: $emoji-list.emoji
+color:$inherited.colors.text
+role: $inherited.types.copy-small
+
+-- ftd.text:
+text: $emoji-list.body
+color: $inherited.colors.text
+role: $inherited.types.copy-small
+
+-- end: ftd.row
+
+-- end: emoji-list
+
+
+
+
+
+
+
+
+
+
+-- component left-bar:
+optional ftd.color background-color: $inherited.colors.background.step-1
+pr.toc-item list left-bar: $items
+
+-- ftd.column:
+min-height.fixed.px: 450
+padding-vertical.px: 60
+padding-horizontal.px: 60
+background.solid: $left-bar.background-color
+border-radius.px: 10
+
+-- left-bar-loop: 
+title: $obj.title
+url: $obj.url
+is-active: $obj.is-active
+sub-sections: $obj.children
+$loop$: $left-bar.left-bar as $obj
+
+-- end: ftd.column
+
+-- end: left-bar
+
+
+
+
+
+
+
+
+
+
+-- component left-bar-loop:
+caption title:
+string url:
+boolean $shows-data: false
+boolean is-active: false
+pr.toc-item list sub-sections: $empty-toc
+
+-- ftd.column:
+width: fill-container
+
+-- left-bar-section: $left-bar-loop.title
+url: $left-bar-loop.url
+sub-sections: $left-bar-loop.sub-sections 
+
+-- end: ftd.column
+
+-- end: left-bar-loop
+
+
+
+
+
+
+
+
+
+
+-- component left-bar-section:
+caption title:
+optional string url: /
+boolean is-active: false
+pr.toc-item list sub-sections: $empty-toc
+boolean show-toc: false
+boolean show-subsections: false
+
+-- ftd.column:
+width.fixed.percent if { ftd.device == "mobile" && left-bar-section.show-subsections }: 50
+margin-bottom.px if { ftd.device == "mobile" }: 3
+spacing.fixed.px: 24
+
+-- ftd.text: $left-bar-section.title
+if: { !left-bar-section.show-toc && ! left-bar-section.show-subsections }
+color: $inherited.colors.text-strong
+role: $inherited.types.copy-large
+link: $left-bar-section.url
+width: fill-container
+white-space: nowrap
+
+-- left-bar-toc: 
+if: { !left-bar-section.show-toc }
+title: $obj.title
+url: $obj.url
+is-active: $obj.is-active
+toc: $empty-toc
+show-subsections: $left-bar-section.show-subsections 
+$loop$: $left-bar-section.sub-sections as $obj
+
+-- end: ftd.column
+
+-- end: left-bar-section
+
+
+
+
+
+
+
+
+
+
+-- component left-bar-toc:
+caption title:
+optional string url: /
+boolean is-active: false
+ftd.color text-color: $inherited.colors.text-strong
+ftd.color active-text-color: $inherited.colors.text-strong 
+pr.toc-item list toc: $empty-toc
+children wrap:
+boolean show-subsections: false
+
+-- ftd.column:
+
+-- ftd.text: $left-bar-toc.title
+if: { !left-bar-toc.show-subsections }
+color: $inherited.colors.text
+role: $inherited.types.copy-large
+link: $left-bar-toc.url
+width: fill-container
+white-space: nowrap
+margin-bottom.px: 2
+
+-- ftd.column:
+if: { !ftd.is_empty(left-bar-toc.toc) }
+spacing.fixed.px: 2
+
+-- left-bar-toc-children: 
+title: $obj.title
+url: $obj.url
+is-active: $obj.is-active
+toc: $obj.children
+$loop$: $left-bar-toc.toc as $obj
+
+-- ftd.column:
+children: $left-bar-toc.wrap
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: left-bar-toc
+
+
+
+
+
+
+
+
+
+
+-- component left-bar-toc-children:
+caption title:
+optional string url: /
+boolean is-active: false
+ftd.color text-color: $inherited.colors.text-strong
+ftd.color active-text-color: $inherited.colors.text-strong 
+pr.toc-item list toc: $empty-toc
+children wrap:
+
+-- ftd.column:
+spacing.fixed.px: 16
+
+-- ftd.text: $left-bar-toc-children.title
+color: $inherited.colors.text
+role: $inherited.types.copy-small
+link: $left-bar-toc-children.url
+width: fill-container
+white-space: nowrap
+
+-- ftd.column:
+if: { !ftd.is_empty(left-bar-toc-children.toc) }
+spacing.fixed.px: 16
+
+-- left-bar-toc-children: 
+title: $obj.title
+url: $obj.url
+is-active: $obj.is-active
+$loop$: $left-bar-toc-children.toc as $obj
+
+-- ftd.column:
+children: $left-bar-toc-children.wrap
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: left-bar-toc-children
+
+
+
+
+
+
+
+
+
+
+-- component code:
+optional caption caption:
+optional string download:
+body body:
+string lang:
+boolean copy: true
+string $copy-text: null
+boolean $copy-mouse-in: false
+boolean $download-mouse-in: false
+boolean $mouse-in: false
+optional ftd.resizing max-height:
+optional ftd.resizing max-width:
+string clean-code: $ftd.clean-code(a = $code.body, lang = $code.lang)
+
+-- ftd.column:
+if: { current-tab == 2 }
+padding-bottom.px: 12
+padding-top.px: 12
+width: fill-container
+$on-mouse-enter$: $ftd.set-bool($a = $code.mouse-in, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $code.mouse-in, v = false)
+cursor: default
+overflow-y: auto
+
+-- ftd.row:
+if: { code.caption != NULL || code.download != NULL || code.copy }
+width: fill-container
+background.solid: $inherited.colors.background.step-1
+padding-top.px if { code.caption != NULL }: 10
+padding-bottom.px if { code.caption != NULL }: 10
+padding-left.px if { code.caption != NULL }: 20
+padding-right.px if { code.caption != NULL }: 20
+border-top-left-radius.px: 4
+border-top-right-radius.px: 4
+max-width.fixed.px if { code.max-width != NULL }: $code.max-width
+
+-- ftd.text: $code.caption
+if: { code.caption != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+align-self: start
+width: fill-container
+
+-- ftd.row:
+if: { code.copy }
+spacing.fixed.px: 10
+align-content: right
+align-self: end
+$on-mouse-leave$: $ftd.set-string($a = $code.copy-text, v = null)
+anchor: parent
+top.px: 12
+right.px: 20
+right.px if { code.download != NULL }: 56
+
+-- ftd.text: Copy
+if: { code.copy-text == "null" && code.mouse-in }
+role: $inherited.types.copy-small
+$on-mouse-enter$: $ftd.set-bool($a = $code.copy-mouse-in, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $code.copy-mouse-in, v = false)
+$on-click$: $ftd.copy-to-clipboard(a = $code.clean-code)
+$on-click$: $ftd.set-string($a = $code.copy-text, v = Copied!)
+
+-- ftd.text: $code.copy-text
+if: { code.copy-text != "null" }
+role: $inherited.types.copy-regular
+color: $inherited.colors.border
+
+-- end: ftd.row
+
+-- end: ftd.row
+
+-- ftd.code:
+if: { ftd.dark-mode }
+text: $code.body
+lang: $code.lang
+width: fill-container
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.code
+border-top-left-radius.px if { code.caption == NULL }: 4
+border-top-right-radius.px if { code.caption == NULL }: 4
+border-bottom-left-radius.px if { code.caption == NULL }: 4
+border-bottom-right-radius.px if { code.caption == NULL }: 4
+overflow-x: auto
+overflow-y: auto
+max-height if { code.max-height != NULL }: $code.max-height
+max-width if { code.max-width != NULL }: $code.max-width
+
+-- ftd.code:
+if: { !ftd.dark-mode }
+text: $code.body
+lang: $code.lang
+width: fill-container
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.code
+border-top-left-radius.px if { code.caption == NULL }: 4
+border-top-right-radius.px if { code.caption == NULL }: 4
+border-bottom-left-radius.px if { code.caption == NULL }: 4
+border-bottom-right-radius.px if { code.caption == NULL }: 4
+overflow-x: auto
+overflow-y: auto
+max-height if { code.max-height != NULL }: $code.max-height
+max-width if { code.max-width != NULL }: $code.max-width
+theme: fastn-theme.light
+
+-- ftd.column:
+if: { code.download != NULL }
+anchor: parent
+right.px: 0
+bottom.px: 12
+z-index: 999
+padding.px: 6
+border-bottom-right-radius.px: 4
+
+-- ftd.text: $code.download
+role: $inherited.types.fine-print
+color: $inherited.colors.text.dark
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: code
+
+
+
+
+
+
+
+
+
+
+-- pr.toc-item list items: 
+$processor$: pr.toc
+
+- Components: doc/
+  - Emoji-list: doc/
+  - Card: doc/
+  - Footer: doc/
+  - Header: doc/
+  - Banner: doc/
