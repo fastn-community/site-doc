@@ -6,20 +6,16 @@
 
 -- site-doc.doc-home: Component Page
 
--- main-row-component:
+-- tabs:
 
--- column-container:
-
--- row-container-18:
-
--- tabs: Canvas
+-- tab: Canvas
 index: 1
 $active-item: true
 
--- tabs: Doc
+-- tab: Doc
 index: 2
 
--- end: row-container-18
+-- end: tabs
 
 -- output:
 
@@ -66,10 +62,6 @@ default: Default
 
 -- end: property-header
 
--- end: column-container
-
--- end: main-row-component
-
 -- end: site-doc.doc-home
 
 
@@ -81,15 +73,6 @@ default: Default
 
 
 
--- component main-row-component:
-children child:
-
--- ftd.row:
-spacing.fixed.px: 24
-padding-bottom.px: 24
-children: $main-row-component.child
-
--- end: main-row-component
 
 
 
@@ -100,34 +83,8 @@ children: $main-row-component.child
 
 
 
--- component row-container-18:
-children child:
-
--- ftd.row:
-width: fill-container
-spacing.fixed.px: 18
-children: $row-container-18.child
-
--- end: row-container-18
 
 
-
-
-
-
-
-
-
-
--- component column-container:
-children child:
-
--- ftd.column:
-width: fill-container
-spacing.fixed.px: 24
-children: $column-container.child
-
--- end: column-container
 
 
 
@@ -139,6 +96,25 @@ children: $column-container.child
 
 
 -- component tabs:
+children tabs:
+
+-- ftd.row:
+spacing.fixed.px: 24
+children: $tabs.tabs
+
+-- end: ftd.row
+
+-- end: tabs
+
+
+
+
+
+
+
+
+
+-- component tab:
 caption title:
 optional boolean $active-item: false
 integer index:
@@ -146,19 +122,19 @@ integer index:
 -- ftd.column:
 padding-bottom.px: 7
 border-bottom-width.px: 2
-$on-click$: $ftd.toggle($a = $tabs.active-item)
-$on-click$: $ftd.set-integer($a = $current-tab, v = $tabs.index)
-border-color if { tabs.index == current-tab }: $inherited.colors.accent.primary
+$on-click$: $ftd.toggle($a = $tab.active-item)
+$on-click$: $ftd.set-integer($a = $current-tab, v = $tab.index)
+border-color if { tab.index == current-tab }: $inherited.colors.accent.primary
 
--- ftd.text: $tabs.title
+-- ftd.text: $tab.title
 role: $inherited.types.button-large
 color: $inherited.colors.text
-color if { tabs.index == current-tab }: $inherited.colors.text-strong
+color if { tab.index == current-tab }: $inherited.colors.text-strong
 white-space: nowrap
 
 -- end: ftd.column
 
--- end: tabs
+-- end: tab
 
 
 
