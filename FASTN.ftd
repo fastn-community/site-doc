@@ -3,10 +3,13 @@
 -- fastn.package: fastn-community.github.io/site-doc
 
 -- fastn.dependency: fifthtry.github.io/doc-site as ds
--- fastn.dependency: fifthtry.github.io/footer
+-- fastn.dependency: fastn-community.github.io/pretty-cs as cs
+-- fastn.dependency: fastn-community.github.io/opensans-typography as typo
 
+-- fastn.auto-import: fastn
 -- fastn.auto-import: ds
--- fastn.auto-import: fifthtry.github.io/footer as fastn-footer
+-- fastn.auto-import: cs
+-- fastn.auto-import: typo
 
 
 
@@ -15,7 +18,6 @@
 
 
 -- fastn.sitemap:
-
 
 # Home: index.html
 

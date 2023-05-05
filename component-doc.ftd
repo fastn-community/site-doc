@@ -1,19 +1,7 @@
 -- import: fastn-community.github.io/site-doc
 
 
--- ds.page: 
-document-title: Welcome to your fastn powered website.
-show-footer: true
-
--- ds.page.footer:
-
--- fastn-footer.fastn-footer:
-copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
-site-logo: $fastn-footer.fastn-logo
-powered-by-text: Powered by
-powered-by-link: https://fastn.io/
-
--- end: ds.page.footer
+-- site-doc.doc-home: Component Page
 
 -- site-doc.component-doc: Component Page
 package-name: fastn-community.github.io/site-doc
@@ -80,4 +68,4 @@ the `key` and appears in a row to key.
 
 -- end: site-doc.component-doc
 
--- end: ds.page
+-- end: site-doc.doc-home
