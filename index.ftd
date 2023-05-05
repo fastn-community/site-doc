@@ -18,19 +18,122 @@ color-scheme: Default $inherited
 typography: fifthtry.github.io/doc-site-typography
 current-package: fastn-community.github.io/site-doc
 
--- ds.h2: How to install fastn?
+-- header: What is Documentation?
+
+Documentation of a component refers to a set of written materials that provide
+information about the component's features, functionality, and usage. This can
+include technical specifications, user manuals, installation guides, release
+notes, API documentation, and other relevant information.
+
+Documentation is essential for software development, as it helps developers
+understand how a component works, how to integrate it with other components,
+and how to troubleshoot issues. It also helps end-users understand how to use
+the component effectively.
+
+-- header: How to install fastn?
 
 Please, [click here](https://fastn.io/install/) to read fastn installation
 documentation.
 
 
--- ds.h2: How to edit your fastn site on Github?
+-- header: How to edit your fastn site on Github?
 
 Please, [click here](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor)
 to read GitHub web editor documentation.
 
+-- header: How to use `site-doc` package?
 
--- ds.h2: How to create a new page?
+`site-doc` package is recommended to be used only for documentation of your
+fastn project components.
+
+To use this package add below lines into your FASTN.ftd file:
+
+-- ds.code:
+lang: ftd
+
+\-- fastn.dependency: fastn-community.github.io/site-doc
+\-- fastn.auto-import: fastn-community.github.io/site-doc as doc
+
+-- header: Invocation
+
+Create new ftd file into your fastn package e.g. `doc.ftd` and add `doc-home`
+component inside it.
+
+
+-- ds.code:
+lang: ftd
+
+\-- doc-home: Welcome to your fastn powered website.
+github-url: https://github.com/fastn-community/site-doc
+color-scheme: Default $inherited
+typography: fifthtry.github.io/doc-site-typography
+current-package: fastn-community.github.io/site-doc
+
+Some body here is coming from `$doc-home.body`
+
+-- header: `doc-home` Properties:
+
+Below are details of all properties of this component.
+
+-- component-property: `title`
+
+It’s used to add a title to `doc-home` component.
+
+-- component-property: `body`
+
+It’s used to add a body content to `doc-home` component.
+
+-- component-property: `github-url`
+
+It’s used to add the `github-url` of your fastn package GitHub repo.
+
+-- component-property: `color-scheme`
+
+It’s used to add a link of `color-scheme` you used for the package.
+
+-- component-property: `typography`
+
+It’s used to add a link of `typography` you used for the package.
+
+
+-- component-property: `current-package`
+
+It’s used to add a link of `current-package` you used for the package.
+
+-- header: Properties at a glance:
+
+Below table shows all properties at a glance and its default types of `doc-home`
+component.
+
+-- property-header:
+
+-- table-of-property: `title`
+type: caption 
+default: Default
+
+-- table-of-property: `body`
+type: body 
+default: Optional
+
+-- table-of-property: `github-url`
+type: String
+default: Default
+
+-- table-of-property: `color-scheme`
+type: String
+default: Default
+
+-- table-of-property: `typography`
+type: String
+default: Default
+
+-- table-of-property: `current-package`
+type: String
+default: Default
+
+-- end: property-header
+
+-- header: How to create a new page?
 
 To create a new page follow below steps:
 
@@ -44,7 +147,7 @@ To create a new page follow below steps:
 - Access e.g. `http://127.0.0.1:8000/your-ftd-file` into browser.
 
 
--- ds.h2: How to update an existing page?
+-- header: How to update an existing page?
 
 Simply open the `.ftd` file into any code editor and change its content. For
 e.g. you want to change page title inside `index.ftd` file then open it in code
@@ -447,7 +550,7 @@ border-color: $inherited.colors.border
 margin-top.px: 24
 padding-bottom.px: 10
 
--- ftd.text: Attribute name
+-- ftd.text: Property name
 role: $inherited.types.button-medium
 color: $inherited.colors.text-strong
 width.fixed.percent: 33.33
@@ -808,6 +911,7 @@ children wrap:
 -- ftd.column:
 if: { current-tab == 2 }
 spacing.fixed.px: 24
+width: fill-container
 
 -- ftd.row:
 width: fill-container
@@ -898,7 +1002,6 @@ caption title:
 body body:
 
 -- ftd.column:
-if: { current-tab == 2 }
 width: fill-container
 
 -- ftd.text: $component-property.title
@@ -929,7 +1032,6 @@ $component-property.body
 children child:
 
 -- ftd.column:
-if: { current-tab == 2 }
 width: fill-container
 
 -- ftd.row:
@@ -940,7 +1042,7 @@ border-color: $inherited.colors.border
 margin-top.px: 24
 padding-bottom.px: 10
 
--- ftd.text: Attribute name
+-- ftd.text: Property name
 role: $inherited.types.button-medium
 color: $inherited.colors.text-strong
 width.fixed.percent: 33.33
@@ -982,7 +1084,6 @@ string type:
 string default:
 
 -- ftd.column:
-if: { current-tab == 2 }
 width: fill-container
 
 -- ftd.row:
@@ -1038,7 +1139,6 @@ optional ftd.resizing max-width:
 string clean-code: $ftd.clean-code(a = $code.body, lang = $code.lang)
 
 -- ftd.column:
-if: { current-tab == 2 }
 padding-bottom.px: 12
 padding-top.px: 12
 width: fill-container
@@ -1268,20 +1368,13 @@ optional body body:
 width: fill-container
 spacing.fixed.px: 18
 
--- ftd.row:
-border-bottom-width.px: 1
-border-color: $inherited.colors.border
-width: fill-container
-
 -- ftd.text: $header.title
 role: $inherited.types.heading-small
 color: $inherited.colors.text-strong
-
--- ftd.text: :
-role: $inherited.types.heading-small
-color: $inherited.colors.text-strong
-
--- end: ftd.row
+border-bottom-width.px: 1
+border-color: $inherited.colors.border
+width: fill-container
+region: h2
 
 -- ftd.text:
 if: { header.body != NULL }
