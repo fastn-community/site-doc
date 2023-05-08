@@ -63,7 +63,7 @@ component inside it.
 -- ds.code:
 lang: ftd
 
-\-- doc-home: Welcome to your fastn powered website.
+\-- doc.doc-home: Welcome to your fastn powered website.
 github-url: https://github.com/fastn-community/site-doc
 color-scheme: Default $inherited
 typography: fifthtry.github.io/doc-site-typography
