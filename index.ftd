@@ -63,7 +63,7 @@ component inside it.
 -- ds.code:
 lang: ftd
 
-\-- doc-home: Welcome to your fastn powered website.
+\-- doc.doc-home: Welcome to your fastn powered website.
 github-url: https://github.com/fastn-community/site-doc
 color-scheme: Default $inherited
 typography: fifthtry.github.io/doc-site-typography
@@ -100,6 +100,10 @@ It’s used to add a link of `typography` you used for the package.
 
 It’s used to add a link of `current-package` you used for the package.
 
+-- component-property: `show-tabs`
+
+It’s used to show / hide `tabs`.
+
 -- header: Properties at a glance:
 
 Below table shows all properties at a glance and its default types of `doc-home`
@@ -108,11 +112,11 @@ component.
 -- property-header:
 
 -- table-of-property: `title`
-type: caption 
+type: Caption 
 default: Default
 
 -- table-of-property: `body`
-type: body 
+type: Body 
 default: Optional
 
 -- table-of-property: `github-url`
@@ -130,6 +134,10 @@ default: Default
 -- table-of-property: `current-package`
 type: String
 default: Default
+
+-- table-of-property: `show-tabs`
+type: Boolean
+default: Optional
 
 -- end: property-header
 
@@ -179,6 +187,7 @@ pr.toc-item list toc: $sitemap.toc
 pr.toc-item list sections: $sitemap.sections
 ftd.color-scheme colors: $cs.main
 ftd.type-data types: $typo.types
+boolean show-tabs: false
 
 -- ftd.column:
 width: fill-container
@@ -345,6 +354,24 @@ color: $inherited.colors.text
 margin-top.px: 24
 
 $doc-home.body
+
+-- ftd.column:
+if: { doc-home.show-tabs }
+width: fill-container
+margin-top.px: 24
+
+-- tabs:
+
+-- tab: Example
+index: 1
+$active-item: true
+
+-- tab: Documentation
+index: 2
+
+-- end: tabs
+
+-- end: ftd.column
 
 -- ftd.column:
 width: fill-container
