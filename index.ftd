@@ -1371,6 +1371,7 @@ width: fill-container
 -- ftd.column:
 spacing.fixed.px: 48
 children: $output.components
+width: fill-container
 
 -- end: ftd.column
 
