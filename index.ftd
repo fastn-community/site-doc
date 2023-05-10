@@ -17,6 +17,7 @@ github-url: https://github.com/fastn-community/site-doc
 color-scheme: Default $inherited
 typography: fifthtry.github.io/doc-site-typography
 current-package: fastn-community.github.io/site-doc
+show-tabs: false
 
 -- header: What is Documentation?
 
