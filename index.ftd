@@ -240,7 +240,7 @@ align-self: center
 spacing.fixed.px: 48
 
 -- render-toc:
-if: { !full-screen }
+if: { !full-screen && !ftd.is_empty($doc-home.toc) }
 toc-obj: $doc-home.toc
 
 -- ftd.column:
@@ -259,7 +259,7 @@ region: h1
 width: fill-container
 
 -- ftd.image:
-if: { !full-screen }
+if: { !full-screen  && !ftd.is_empty($doc-home.toc)}
 src: $assets.files.static.zoom.svg
 width.fixed.px: 20
 align-self: center
@@ -267,7 +267,7 @@ cursor: pointer
 $on-click$: $ftd.set-bool($a = $full-screen, v = true)
 
 -- ftd.image:
-if: { full-screen }
+if: { full-screen  && !ftd.is_empty($doc-home.toc)}
 src: $assets.files.static.minify.svg
 width.fixed.px: 20
 align-self: center
@@ -379,7 +379,7 @@ width: fill-container
 margin-top.px: 24
 children: $doc-home.doc-childs
 spacing.fixed.px: 24
-min-height.fixed.vh if { full-screen }: 50
+min-height.fixed.vh if { full-screen || ftd.is_empty($doc-home.toc) }: 50
 
 -- end: ftd.column
 
