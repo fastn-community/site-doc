@@ -187,7 +187,7 @@ pr.toc-item list toc: $sitemap.toc
 pr.toc-item list sections: $sitemap.sections
 ftd.color-scheme colors: $cs.main
 ftd.type-data types: $typo.types
-boolean show-tabs: false
+boolean show-tabs: true
 
 -- ftd.column:
 width: fill-container
