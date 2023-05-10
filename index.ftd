@@ -379,6 +379,7 @@ width: fill-container
 margin-top.px: 24
 children: $doc-home.doc-childs
 spacing.fixed.px: 24
+min-height.fixed.vh if { full-screen }: 50
 
 -- end: ftd.column
 
