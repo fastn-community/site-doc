@@ -10,7 +10,6 @@ github-url: https://github.com/fastn-community/pretty-ws
 color-scheme: fastn-community.github.io/winter-cs
 typography: fifthtry.github.io/doc-site-typography
 current-package: fastn-community.github.io/pretty-ws
-show-tabs: true
 
 -- site-doc.output:
 types: $typo.types
