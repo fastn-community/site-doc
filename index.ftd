@@ -974,7 +974,7 @@ color: $inherited.colors.text
 
 -- end: ftd.row
 
--- header: Implementation
+-- header: Overview
 
 $component-doc.body
 
