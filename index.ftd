@@ -184,6 +184,7 @@ optional string current-package:
 optional body body: 
 children doc-childs:
 string site-title: Documentation
+string site-url: index.html
 pr.toc-item list toc: $sitemap.toc
 pr.toc-item list sections: $sitemap.sections
 ftd.color-scheme colors: $cs.main
@@ -211,6 +212,7 @@ width: fill-container
 role: $inherited.types.heading-small
 color: $inherited.colors.cta-secondary.text
 align-self: center
+link: $doc-home.site-url
 
 -- end: ftd.row
 
