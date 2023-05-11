@@ -1366,7 +1366,7 @@ style: bold
 -- component output:
 children components:
 ftd.type-data types: $typo.types
-ftd.color-scheme colors: $ftd.default-colors
+ftd.color-scheme colors: $cs.main
 
 -- ftd.column:
 if: { current-tab == 1 }
