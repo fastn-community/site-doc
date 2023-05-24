@@ -702,6 +702,8 @@ caption copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
 optional ftd.image-src site-logo: 
 optional string powered-by-text:
 optional string powered-by-link: 
+ftd.type-data types: $ftd.default-types
+ftd.color-scheme colors: $ftd.default-colors
 
 -- ftd.column:
 width: fill-container
