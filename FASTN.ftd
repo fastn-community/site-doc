@@ -7,11 +7,13 @@
 -- fastn.dependency: fastn-community.github.io/opensans-typography as typo
 -- fastn.dependency: fastn-community.github.io/pretty-ws
 -- fastn.dependency: fastn-community.github.io/winter-cs
+-- fastn.dependency: fastn-community.github.io/dark-mode-switcher as dms
 
 -- fastn.auto-import: fastn
 -- fastn.auto-import: ds
 -- fastn.auto-import: cs
 -- fastn.auto-import: typo
+-- fastn.auto-import: dms
 
 
 
