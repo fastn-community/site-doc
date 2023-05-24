@@ -234,6 +234,7 @@ sections: $obj
 -- ftd.column:
 width: fill-container
 padding-horizontal.px: 48
+background.solid: $inherited.colors.background.step-1
 
 -- ftd.row:
 width: fill-container
@@ -396,6 +397,8 @@ copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
 site-logo: $fastn-logo
 powered-by-text: Powered by
 powered-by-link: https://fastn.io/
+
+-- dms.dark-mode-switcher-float:
 
 -- end: ftd.column
 
