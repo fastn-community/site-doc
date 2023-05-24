@@ -1300,7 +1300,6 @@ spacing: space-between
 z-index: 10
 
 -- ftd.row:
-spacing.fixed.px: 24
 children: $tabs.tabs
 
 -- end: ftd.row
@@ -1323,16 +1322,12 @@ optional boolean $active-item: false
 integer index:
 
 -- ftd.column:
-border-width.px: 1
+border-width.px if { tab.index == current-tab }: 1
 $on-click$: $ftd.toggle($a = $tab.active-item)
 $on-click$: $ftd.set-integer($a = $current-tab, v = $tab.index)
 border-left-color if { tab.index == current-tab }: $inherited.colors.cta-primary.base
 border-right-color if { tab.index == current-tab }: $inherited.colors.cta-primary.base
 border-top-color if { tab.index == current-tab }: $inherited.colors.cta-primary.base
-border-left-color: $inherited.colors.cta-tertiary.base
-border-top-color: $inherited.colors.cta-tertiary.base
-border-right-color: $inherited.colors.cta-tertiary.base
-border-bottom-color: $inherited.colors.cta-primary.base
 shadow if { tab.index == current-tab }: $body
 border-bottom-width.px if { tab.index == current-tab }: 1
 border-bottom-color if { tab.index == current-tab }: $inherited.colors.background.base
@@ -1341,7 +1336,7 @@ padding-horizontal.px: 32
 border-top-left-radius.px: 6
 border-top-right-radius.px: 6
 margin-bottom.px: -1
-margin-left.px: 12
+margin-left.px: 0
 
 -- ftd.text: $tab.title
 role: $inherited.types.button-large
