@@ -35,7 +35,7 @@ info: `-- promo-banner` can be used as homepage banner on your fastn projects.
 `promo-banner` is a new conversation experience via using FTD lang. To use
 `promo-banner` on your fastn package, add below into lines FASTN.ftd file:
 
--- ds.code:
+-- cb.code:
 lang: ftd
 
 \-- fastn.dependency: fastn-community.github.io/pretty-ws
@@ -44,7 +44,7 @@ lang: ftd
 
 -- site-doc.header: Invocation:
 
--- ds.code:
+-- cb.code:
 lang: ftd
 
 \-- lp.promo-banner: At vero eos et accusamus et 

@@ -49,7 +49,7 @@ fastn project components.
 
 To use this package add below lines into your FASTN.ftd file:
 
--- ds.code:
+-- cb.code:
 lang: ftd
 
 \-- fastn.dependency: fastn-community.github.io/site-doc
@@ -61,7 +61,7 @@ Create new ftd file into your fastn package e.g. `doc.ftd` and add `doc-home`
 component inside it.
 
 
--- ds.code:
+-- cb.code:
 lang: ftd
 
 \-- doc.doc-home: Welcome to your fastn powered website.
@@ -176,8 +176,9 @@ new `<title>`.
 
 
 -- component doc-home:
-caption title:
+optional caption title:
 optional string github-url:
+optional string license-url:
 optional string color-scheme:
 optional string typography:
 optional string current-package: 
@@ -189,7 +190,11 @@ pr.toc-item list toc: $sitemap.toc
 pr.toc-item list sections: $sitemap.sections
 ftd.color-scheme colors: $cs.main
 ftd.type-data types: $typo.types
-boolean show-tabs: true
+boolean show-tabs: false
+boolean copy: true
+string $copy-text: null
+boolean $mouse-in: false
+string clean-code: $ftd.clean-code(a = $doc-home.current-package, lang = ftd)
 
 -- ftd.column:
 width: fill-container
@@ -204,20 +209,29 @@ align-content: center
 
 -- ftd.row:
 width: fill-container
+align-content: center
 
--- ftd.row:
+-- ftd.column:
 width: fill-container
+align-self: center
+
+-- ftd.column:
 
 -- ftd.text: $doc-home.site-title
 role: $inherited.types.heading-small
 color: $inherited.colors.cta-secondary.text
-align-self: center
 link: $doc-home.site-url
 
--- end: ftd.row
+-- ftd.text: a fastn package
+role: $inherited.types.fine-print
+color: $inherited.colors.cta-secondary.text
+padding-top.px: 4
+
+-- end: ftd.column
+
+-- end: ftd.column
 
 -- ftd.row:
-align-self: end
 align-content: center
 spacing.fixed.px: 18
 
@@ -233,23 +247,70 @@ sections: $obj
 
 -- ftd.column:
 width: fill-container
-padding-horizontal.px: 48
 background.solid: $inherited.colors.background.step-1
 
 -- ftd.row:
 width: fill-container
-margin-vertical.px: 48
 align-self: center
 spacing.fixed.px: 48
+padding-horizontal.px: 48
+padding-horizontal.px if { ftd.device == "mobile" }: 24
+
+-- ftd.column:
+anchor: parent
+left.px: 10
+top.px: 10
+z-index: 999
+
+-- ftd.image:
+if: { full-screen  && !ftd.is_empty($doc-home.toc)}
+src: $assets.files.static.push-right.svg
+width.fixed.px: 34
+align-self: center
+cursor: pointer
+$on-click$: $ftd.set-bool($a = $full-screen, v = false)
+
+-- end: ftd.column
+
+-- ftd.desktop:
+
+-- ftd.column:
+if: { !full-screen  && !ftd.is_empty($doc-home.toc)}
+width.fixed.percent: 25
+border-right-width.px: 1
+border-style: ridge
+height: fill-container
+
+-- ftd.column:
+anchor: parent
+right.px: -42
+top.px: 10
+z-index: 999
+
+-- ftd.image:
+if: { !full-screen  && !ftd.is_empty($doc-home.toc)}
+src: $assets.files.static.push-left.svg
+width.fixed.px: 34
+align-self: center
+cursor: pointer
+$on-click$: $ftd.set-bool($a = $full-screen, v = true)
+
+-- end: ftd.column
 
 -- render-toc:
 if: { !full-screen && !ftd.is_empty($doc-home.toc) }
 toc-obj: $doc-home.toc
 
+-- end: ftd.column
+
+-- end: ftd.desktop
+
 -- ftd.column:
 width: fill-container
+margin-vertical.px: 48
 
 -- ftd.row:
+if: { doc-home.title != NULL }
 width: fill-container
 border-bottom-width.px: 1 
 border-color: $inherited.colors.border
@@ -261,26 +322,15 @@ color: $inherited.colors.text-strong
 region: h1
 width: fill-container
 
--- ftd.image:
-if: { !full-screen  && !ftd.is_empty($doc-home.toc)}
-src: $assets.files.static.zoom.svg
-width.fixed.px: 20
-align-self: center
-cursor: pointer
-$on-click$: $ftd.set-bool($a = $full-screen, v = true)
-
--- ftd.image:
-if: { full-screen  && !ftd.is_empty($doc-home.toc)}
-src: $assets.files.static.minify.svg
-width.fixed.px: 20
-align-self: center
-cursor: pointer
-$on-click$: $ftd.set-bool($a = $full-screen, v = false)
-
 -- end: ftd.row
 
+-- ftd.desktop:
+
 -- ftd.column:
-if: { !full-screen }
+width: fill-container
+
+-- ftd.column:
+if: { doc-home.current-package != NULL }
 border-width.px: 1
 border-color: $inherited.colors.border
 width: fill-container
@@ -298,28 +348,73 @@ color: $inherited.colors.text-strong
 min-width.fixed.px: 170
 
 -- ftd.text: $doc-home.current-package
-if: { doc-home.current-package != NULL }
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
+padding-right.px: 50
+
+-- ftd.row:
+spacing.fixed.px: 10
+align-content: right
+align-self: end
+anchor: parent
+top.px: 3
+right.px: 20
+cursor: pointer
+
+-- ftd.image:
+if: { doc-home.copy-text == "null"}
+src: $assets.files.static.copy.svg
+$on-click$: $ftd.copy-to-clipboard(a = $doc-home.clean-code)
+$on-click$: $ftd.set-string($a = $doc-home.copy-text, v = Copied!)
+width.fixed.px: 18
+cursor: pointer
+$on-mouse-leave$: $ftd.set-bool($a = $doc-home.mouse-in, v = true)
+
+-- ftd.image:
+if: { doc-home.copy-text != "null" && doc-home.mouse-in }
+src: $assets.files.static.tick.svg
+width.fixed.px: 18
+$on-mouse-leave$: $ftd.set-bool($a = $doc-home.mouse-in, v = false)
+$on-mouse-leave$: $ftd.set-string($a = $doc-home.copy-text, v = null)
+
+-- end: ftd.row
 
 -- end: ftd.row
 
 -- ftd.row:
+if: { doc-home.license-url != NULL }
 spacing.fixed.px: 12
+align-content: center
 
--- ftd.text: GitHub URL:
+-- ftd.text: License:
 role: $inherited.types.copy-regular
 color: $inherited.colors.text-strong
 min-width.fixed.px: 170
 
--- ftd.text: $doc-home.github-url
-if: { doc-home.github-url != NULL }
+-- ftd.row:
+align-content: center
+spacing.fixed.px: 0
+
+-- ftd.text: Open Source BSD
 role: $inherited.types.copy-regular
-color: $inherited.colors.text
+color:  $inherited.colors.text-strong
+link: $doc-home.license-url
+align-self: center
+open-in-new-tab: true
+
+-- ftd.image:
+src: $assets.files.static.link.svg
+link: $doc-home.license-url
+width.fixed.px: 24
+margin-top.px: 2
+open-in-new-tab: true
+
+-- end: ftd.row
 
 -- end: ftd.row
 
 -- ftd.row:
+if: { doc-home.color-scheme != NULL }
 spacing.fixed.px: 12
 
 -- ftd.text: Color Scheme:
@@ -328,13 +423,13 @@ color: $inherited.colors.text-strong
 min-width.fixed.px: 170
 
 -- ftd.text: $doc-home.color-scheme
-if: { doc-home.color-scheme != NULL }
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
 
 -- end: ftd.row
 
 -- ftd.row:
+if: { doc-home.typography != NULL }
 spacing.fixed.px: 12
 
 -- ftd.text: Typography:
@@ -343,13 +438,83 @@ color: $inherited.colors.text-strong
 min-width.fixed.px: 170
 
 -- ftd.text: $doc-home.typography
-if: { doc-home.typography != NULL }
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
 
 -- end: ftd.row
 
 -- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.desktop
+
+
+-- ftd.mobile:
+
+-- ftd.column:
+width: fill-container
+
+-- ftd.column:
+if: { !full-screen }
+border-width.px: 1
+border-color: $inherited.colors.border
+width: fill-container
+border-radius.px: 3
+margin-top.px: 12
+padding.px: 12
+spacing.fixed.px: 16
+
+-- ftd.column:
+spacing.fixed.px: 12
+
+-- ftd.text: Package name:
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+min-width.fixed.px: 170
+
+-- ftd.text: $doc-home.current-package
+if: { doc-home.current-package != NULL }
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+
+-- ftd.text: GitHub URL:
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+min-width.fixed.px: 170
+
+-- ftd.text: $doc-home.github-url
+if: { doc-home.github-url != NULL }
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+
+-- ftd.text: Color Scheme:
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+min-width.fixed.px: 170
+
+-- ftd.text: $doc-home.color-scheme
+if: { doc-home.color-scheme != NULL }
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+
+-- ftd.text: Typography:
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+min-width.fixed.px: 170
+
+-- ftd.text: $doc-home.typography
+if: { doc-home.typography != NULL }
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.mobile
 
 -- ftd.text: 
 if: { doc-home.body != NULL }
@@ -460,7 +625,7 @@ margin-bottom.px: 16
 
 $component.body
 
--- ds.code:
+-- cb.code:
 lang: ftd
 body: $dependency(key = -- fastn.dependency:, v = $component.package-name)
 
@@ -505,7 +670,7 @@ string key:
 -- ftd.column:
 width: fill-container
 
--- ds.code:
+-- cb.code:
 lang: ftd
 
 $dependency(key = $key-value.key, v = $key-value.value)
@@ -790,10 +955,10 @@ margin-left.px: 18
 pr.toc-item list toc-obj:
 
 -- ftd.column:
-width.fixed.percent: 25
-shadow: $body
-border-radius.px: 10
-padding.px: 24
+width: fill-container
+;;shadow: $body
+;;border-radius.px: 10
+padding-vertical.px: 24
 sticky: true
 top.px: 0
 left.px: 24
@@ -802,7 +967,7 @@ min-height.fixed.calc: 100vh - 0px
 height.fixed.vh: 100
 overflow-y: auto
 align-content: top-left
-background.solid: $inherited.colors.background.base
+background.solid: $inherited.colors.background.step-1
 
 -- toc-instance:
 $loop$: $render-toc.toc-obj as $obj
@@ -847,14 +1012,14 @@ role: $inherited.types.copy-small
 color: $inherited.colors.text
 color if { toc-instance.toc.is-active }: $inherited.colors.cta-primary.base
 
--- ftd.image:
+/-- ftd.image:
 if: { !ftd.is_empty(toc-instance.toc.children) && toc-instance.toc-clone.is-open}
 src: $assets.files.static.open.svg
 height.fixed.px: 14
 width: auto
 align-self: center
 
--- ftd.image:
+/-- ftd.image:
 if: { !ftd.is_empty(toc-instance.toc.children) && !toc-instance.toc-clone.is-open}
 src: $assets.files.static.close.svg
 height.fixed.px: 14
@@ -864,13 +1029,10 @@ align-self: center
 -- end: ftd.row
 
 -- ftd.column:
-if: { !ftd.is_empty(toc-instance.toc.children) && toc-instance.toc-clone.is-open }
+;;if: { !ftd.is_empty(toc-instance.toc.children) && toc-instance.toc-clone.is-open }
 margin-left.px: 12
 padding-left.px: 10
-border-left-width.px: 1
-border-color: $inherited.colors.border
-margin-top.rem: 0.5
-margin-bottom.rem: 1.25
+margin-bottom.rem: 0.2
 
 -- childrens:
 $loop$: $toc-instance.toc.children as $obj
@@ -943,16 +1105,21 @@ optional string package-name:
 optional string info:
 optional body body:
 children wrap:
+boolean copy: true
+string $copy-text: null
+boolean $mouse-in: false
+string clean-code: $ftd.clean-code(a = $component-doc.package-name, lang = ftd)
 
 -- ftd.column:
-if: { current-tab == 2 }
+;;if: { current-tab == 2 }
 spacing.fixed.px: 24
 width: fill-container
 
 -- ftd.row:
 width: fill-container
+margin-top.px: -24
 
--- ftd.text: $component-doc.title
+/-- ftd.text: $component-doc.title
 link: $component-doc.package-link
 role: $inherited.types.heading-medium
 color: $inherited.colors.text-strong
@@ -976,6 +1143,30 @@ color: $inherited.colors.text-strong
 -- ftd.text: $component-doc.package-name
 role: $inherited.types.copy-small
 color: $inherited.colors.text
+
+-- ftd.row:
+spacing.fixed.px: 10
+align-content: right
+align-self: end
+cursor: pointer
+
+-- ftd.image:
+if: { component-doc.copy-text == "null"}
+src: $assets.files.static.copy.svg
+$on-click$: $ftd.copy-to-clipboard(a = $component-doc.clean-code)
+$on-click$: $ftd.set-string($a = $component-doc.copy-text, v = Copied!)
+width.fixed.px: 18
+cursor: pointer
+$on-mouse-leave$: $ftd.set-bool($a = $component-doc.mouse-in, v = true)
+
+-- ftd.image:
+if: { component-doc.copy-text != "null" && component-doc.mouse-in }
+src: $assets.files.static.tick.svg
+width.fixed.px: 18
+$on-mouse-leave$: $ftd.set-bool($a = $component-doc.mouse-in, v = false)
+$on-mouse-leave$: $ftd.set-string($a = $component-doc.copy-text, v = null)
+
+-- end: ftd.row
 
 -- end: ftd.row
 
@@ -1034,15 +1225,41 @@ color: $inherited.colors.text
 
 
 -- component component-property:
+optional string type:
 caption title:
 body body:
 
 -- ftd.column:
 width: fill-container
 
+-- ftd.row:
+align-content: center
+
 -- ftd.text: $component-property.title
 role: $inherited.types.heading-small
 color: $inherited.colors.text
+
+-- ftd.row:
+if: { component-property.type != NULL }
+align-content: center
+padding-left.px: 12
+color: $inherited.colors.custom.nine
+role: $inherited.types.heading-tiny
+
+-- ftd.text: {
+color: $inherited.colors.custom.seven
+
+-- ftd.text: type:
+padding-right.px: 8
+
+-- ftd.text: $component-property.type
+
+-- ftd.text: }
+color: $inherited.colors.custom.seven
+
+-- end: ftd.row
+
+-- end: ftd.row
 
 -- ftd.text: 
 role: $inherited.types.copy-regular
