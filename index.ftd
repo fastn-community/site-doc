@@ -542,6 +542,36 @@ if: { doc-home.current-package != NULL }
 role: $inherited.types.fine-print
 color: $inherited.colors.text
 
+-- ftd.row:
+spacing.fixed.px: 12
+align-content: center
+
+-- ftd.text: License:
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+
+-- ftd.row:
+spacing.fixed.px: 0
+align-content: center
+
+-- ftd.text: Open Source BSD
+role: $inherited.types.fine-print
+color:  $inherited.colors.text-strong
+link: $doc-home.license-url
+align-self: center
+open-in-new-tab: true
+
+-- ftd.image:
+src: $assets.files.static.link.svg
+link: $doc-home.license-url
+width.fixed.px: 22
+margin-top.px: 2
+open-in-new-tab: true
+
+-- end: ftd.row
+
+-- end: ftd.row
+
 -- ftd.text: GitHub URL:
 if: { doc-home.github-url != NULL }
 role: $inherited.types.copy-small
