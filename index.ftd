@@ -188,6 +188,7 @@ string site-title: Documentation
 string site-url: index.html
 pr.toc-item list toc: $sitemap.toc
 pr.toc-item list sections: $sitemap.sections
+pr.toc-item list sub-sections: $sitemap.subsections
 ftd.color-scheme colors: $cs.main
 ftd.type-data types: $typo.types
 boolean show-tabs: false
@@ -195,21 +196,56 @@ boolean copy: true
 string $copy-text: null
 boolean $mouse-in: false
 string clean-code: $ftd.clean-code(a = $doc-home.current-package, lang = ftd)
+boolean $sidebar-open: false
 
 -- ftd.column:
 width: fill-container
 background.solid: $inherited.colors.background.base
 
+
+-- ftd.column:
+if: { doc-home.sidebar-open }
+width: fill-container
+background.solid: $inherited.colors.background.overlay
+height.fixed.calc: 100vh
+z-index: 10
+
+-- mobile-sidebar:
+if: { doc-home.sidebar-open }
+$sidebar-open: $doc-home.sidebar-open
+
+-- end: ftd.column
+
+-- menu-mobile:
+if: { doc-home.sidebar-open }
+site-url: $doc-home.site-url 
+site-name: $doc-home.site-title
+current-url: index.html
+sections: $doc-home.sections
+sub-sections: $doc-home.sub-sections 
+
 -- ftd.column:
 width: fill-container
 padding-vertical.px: 24
 padding-horizontal.px: 48
+padding-horizontal.px if { ftd.device == "mobile" }: 24
 background.solid: $inherited.colors.background.step-2
 align-content: center
 
 -- ftd.row:
 width: fill-container
 align-content: center
+
+-- ftd.mobile:
+
+-- ftd.image:
+src: $assets.files.static.hamburger.svg
+width.fixed.px: 24
+align-self: center
+$on-click$: $ftd.toggle($a = $doc-home.sidebar-open)
+margin-right.px: 24
+
+-- end: ftd.mobile
 
 -- ftd.column:
 width: fill-container
@@ -456,7 +492,7 @@ color: $inherited.colors.text
 width: fill-container
 
 -- ftd.column:
-if: { !full-screen }
+if: { doc-home.current-package != NULL }
 border-width.px: 1
 border-color: $inherited.colors.border
 width: fill-container
@@ -465,10 +501,38 @@ margin-top.px: 12
 padding.px: 12
 spacing.fixed.px: 16
 
+-- ftd.row:
+spacing.fixed.px: 10
+align-content: right
+align-self: end
+anchor: parent
+top.px: 20
+right.px: 20
+cursor: pointer
+
+-- ftd.image:
+if: { doc-home.copy-text == "null"}
+src: $assets.files.static.copy.svg
+$on-click$: $ftd.copy-to-clipboard(a = $doc-home.clean-code)
+$on-click$: $ftd.set-string($a = $doc-home.copy-text, v = Copied!)
+width.fixed.px: 18
+cursor: pointer
+$on-mouse-leave$: $ftd.set-bool($a = $doc-home.mouse-in, v = true)
+
+-- ftd.image:
+if: { doc-home.copy-text != "null"}
+src: $assets.files.static.tick.svg
+width.fixed.px: 18
+$on-mouse-leave$: $ftd.set-bool($a = $doc-home.mouse-in, v = false)
+$on-mouse-leave$: $ftd.set-string($a = $doc-home.copy-text, v = null)
+
+-- end: ftd.row
+
 -- ftd.column:
 spacing.fixed.px: 12
 
 -- ftd.text: Package name:
+if: { doc-home.current-package != NULL }
 role: $inherited.types.copy-small
 color: $inherited.colors.text-strong
 min-width.fixed.px: 170
@@ -478,7 +542,38 @@ if: { doc-home.current-package != NULL }
 role: $inherited.types.fine-print
 color: $inherited.colors.text
 
+-- ftd.row:
+spacing.fixed.px: 12
+align-content: center
+
+-- ftd.text: License:
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+
+-- ftd.row:
+spacing.fixed.px: 0
+align-content: center
+
+-- ftd.text: Open Source BSD
+role: $inherited.types.fine-print
+color:  $inherited.colors.text-strong
+link: $doc-home.license-url
+align-self: center
+open-in-new-tab: true
+
+-- ftd.image:
+src: $assets.files.static.link.svg
+link: $doc-home.license-url
+width.fixed.px: 22
+margin-top.px: 2
+open-in-new-tab: true
+
+-- end: ftd.row
+
+-- end: ftd.row
+
 -- ftd.text: GitHub URL:
+if: { doc-home.github-url != NULL }
 role: $inherited.types.copy-small
 color: $inherited.colors.text-strong
 min-width.fixed.px: 170
@@ -489,6 +584,7 @@ role: $inherited.types.fine-print
 color: $inherited.colors.text
 
 -- ftd.text: Color Scheme:
+if: { doc-home.color-scheme != NULL }
 role: $inherited.types.copy-small
 color: $inherited.colors.text-strong
 min-width.fixed.px: 170
@@ -499,6 +595,7 @@ role: $inherited.types.fine-print
 color: $inherited.colors.text
 
 -- ftd.text: Typography:
+if: { doc-home.typography != NULL }
 role: $inherited.types.copy-small
 color: $inherited.colors.text-strong
 min-width.fixed.px: 170
@@ -597,6 +694,8 @@ border-bottom-width.px: 1
 width: fill-container
 border-color: $inherited.colors.border
 
+-- ftd.desktop:
+
 -- ftd.row:
 border-width.px: 1
 border-color: $inherited.colors.border
@@ -615,6 +714,31 @@ role: $inherited.types.copy-regular
 color: $inherited.colors.text
 
 -- end: ftd.row
+
+-- end: ftd.desktop
+
+-- ftd.mobile:
+
+-- ftd.column:
+border-width.px: 1
+border-color: $inherited.colors.border
+width: fill-container
+border-radius.px: 3
+margin-top.px: 12
+padding.px: 12
+spacing.fixed.px: 16
+
+-- ftd.text: Package name:
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+
+-- ftd.text: $component.package-name
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- end: ftd.column
+
+-- end: ftd.mobile
 
 -- ftd.text: 
 if: { component.body != NULL }
@@ -1128,6 +1252,8 @@ color: $inherited.colors.text-strong
 role: $inherited.types.copy-small
 color: $inherited.colors.text
 
+-- ftd.desktop:
+
 -- ftd.row:
 width: fill-container
 border-width.px: 1
@@ -1169,6 +1295,55 @@ $on-mouse-leave$: $ftd.set-string($a = $component-doc.copy-text, v = null)
 -- end: ftd.row
 
 -- end: ftd.row
+
+-- end: ftd.desktop
+
+-- ftd.mobile:
+
+-- ftd.column:
+width: fill-container
+border-width.px: 1
+border-radius.px: 4
+border-color: $inherited.colors.border
+spacing.fixed.px: 24
+padding.px: 18
+
+-- ftd.text: Package Name:
+role: $inherited.types.copy-small
+color: $inherited.colors.text-strong
+
+-- ftd.text: $component-doc.package-name
+role: $inherited.types.copy-small
+color: $inherited.colors.text
+
+-- ftd.row:
+spacing.fixed.px: 10
+align-content: right
+align-self: end
+cursor: pointer
+anchor: parent
+
+-- ftd.image:
+if: { component-doc.copy-text == "null"}
+src: $assets.files.static.copy.svg
+$on-click$: $ftd.copy-to-clipboard(a = $component-doc.clean-code)
+$on-click$: $ftd.set-string($a = $component-doc.copy-text, v = Copied!)
+width.fixed.px: 18
+cursor: pointer
+$on-mouse-leave$: $ftd.set-bool($a = $component-doc.mouse-in, v = true)
+
+-- ftd.image:
+if: { component-doc.copy-text != "null" }
+src: $assets.files.static.tick.svg
+width.fixed.px: 18
+$on-mouse-leave$: $ftd.set-bool($a = $component-doc.mouse-in, v = false)
+$on-mouse-leave$: $ftd.set-string($a = $component-doc.copy-text, v = null)
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: ftd.mobile
 
 -- header: Overview
 
@@ -1232,6 +1407,8 @@ body body:
 -- ftd.column:
 width: fill-container
 
+-- ftd.desktop:
+
 -- ftd.row:
 align-content: center
 
@@ -1260,6 +1437,33 @@ color: $inherited.colors.custom.seven
 -- end: ftd.row
 
 -- end: ftd.row
+
+-- end: ftd.desktop
+
+-- ftd.mobile:
+
+-- ftd.column:
+
+-- ftd.text: $component-property.title
+role: $inherited.types.heading-small
+color: $inherited.colors.text
+
+-- ftd.row:
+if: { component-property.type != NULL }
+align-content: center
+color: $inherited.colors.custom.nine
+role: $inherited.types.heading-tiny
+
+-- ftd.text: type:
+padding-right.px: 8
+
+-- ftd.text: $component-property.type
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: ftd.mobile
 
 -- ftd.text: 
 role: $inherited.types.copy-regular
@@ -1635,3 +1839,103 @@ $header.body
 -- end: ftd.column
 
 -- end: header
+
+
+
+
+
+
+
+
+
+
+-- component mobile-sidebar:
+boolean $sidebar-open:
+
+-- ftd.column:
+anchor: window
+top.px: 0
+bottom.px: 0
+left.px: 0
+right.px: 0
+background.solid:  $inherited.colors.background.overlay
+z-index: 1
+$on-click$: $ftd.toggle($a = $mobile-sidebar.sidebar-open)
+
+-- ftd.image:
+src: $assets.files.static.cross.svg
+height.fixed.px: 24
+width: hug-content
+anchor: window
+right.px: 16
+top.px: 20
+
+-- end: ftd.column
+
+-- end: mobile-sidebar
+
+
+
+
+
+
+
+
+
+
+-- component menu-mobile:
+ftd.image-src menu-icon: $assets.files.static.hamburger.svg
+string site-url: 
+string current-url:
+optional string site-name:
+pr.toc-item list sections:
+pr.toc-item list sub-sections:
+pr.toc-item list toc: $sitemap.toc
+
+-- ftd.column:
+width.fixed.calc: 100% - 48px
+height.fixed.calc: 100vh - 0px
+anchor: window
+left.px: 0
+top.px: 0
+overflow-y: auto
+padding-top.px: 20
+padding-horizontal.px: 24
+background.solid: $inherited.colors.background.step-1
+z-index: 14
+
+-- ftd.column:
+if: { menu-mobile.site-name != NULL }
+width: fill-container
+padding-bottom.px: 12
+border-bottom-width.px: 1
+border-color: $inherited.colors.border
+
+-- ftd.text: $menu-mobile.site-name
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+link: $menu-mobile.site-url
+
+-- ftd.text: a fastn package
+role: $inherited.types.fine-print
+color: $inherited.colors.text-strong
+padding-top.px: 4
+
+-- end: ftd.column
+
+-- ftd.column:
+if: { !ftd.is_empty(menu-mobile.sections) }
+width: fill-container
+padding-top.px: 24
+
+-- toc-instance:
+$loop$: $sitemap.toc as $obj
+toc: $obj
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: menu-mobile
+
+
