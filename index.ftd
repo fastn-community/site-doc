@@ -49,7 +49,7 @@ fastn project components.
 
 To use this package add below lines into your FASTN.ftd file:
 
--- ds.code:
+-- cb.code:
 lang: ftd
 
 \-- fastn.dependency: fastn-community.github.io/site-doc
@@ -61,7 +61,7 @@ Create new ftd file into your fastn package e.g. `doc.ftd` and add `doc-home`
 component inside it.
 
 
--- ds.code:
+-- cb.code:
 lang: ftd
 
 \-- doc.doc-home: Welcome to your fastn powered website.
@@ -749,7 +749,7 @@ margin-bottom.px: 16
 
 $component.body
 
--- ds.code:
+-- cb.code:
 lang: ftd
 body: $dependency(key = -- fastn.dependency:, v = $component.package-name)
 
@@ -794,7 +794,7 @@ string key:
 -- ftd.column:
 width: fill-container
 
--- ds.code:
+-- cb.code:
 lang: ftd
 
 $dependency(key = $key-value.key, v = $key-value.value)
