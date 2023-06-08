@@ -255,12 +255,12 @@ align-self: center
 
 -- ftd.text: $doc-home.site-title
 role: $inherited.types.heading-small
-color: $inherited.colors.cta-secondary.text
+color: $inherited.colors.text-strong
 link: $doc-home.site-url
 
 -- ftd.text: a fastn package
 role: $inherited.types.fine-print
-color: $inherited.colors.cta-secondary.text
+color: $inherited.colors.text-strong
 padding-top.px: 4
 
 -- end: ftd.column
@@ -314,6 +314,7 @@ $on-click$: $ftd.set-bool($a = $full-screen, v = false)
 if: { !full-screen  && !ftd.is_empty($doc-home.toc)}
 width.fixed.percent: 25
 border-right-width.px: 1
+border-color: $inherited.colors.border
 border-style: ridge
 height: fill-container
 
@@ -659,6 +660,8 @@ copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
 site-logo: $fastn-logo
 powered-by-text: Powered by
 powered-by-link: https://fastn.io/
+colors: $cs.main
+types: $typo.types
 
 -- dms.dark-mode-switcher-float:
 
@@ -950,7 +953,7 @@ pr.toc-item sections:
 
 -- ftd.text: $header-links.sections.title
 role: $inherited.types.copy-regular
-color: $inherited.colors.cta-secondary.text
+color: $inherited.colors.text
 border-bottom-width.px: 2
 border-color: $inherited.colors.background.step-2
 border-color if { header-links.sections.is-active }: $inherited.colors.cta-primary.base
