@@ -12,7 +12,7 @@ $processor$: pr.sitemap
 light: https://fastn.com/-/fastn.com/images/fastn.svg
 dark: https://fastn.com/-/fastn.com/images/fastn-dark.svg
 
--- string copyright: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
+-- string $copyright-info: Copyright © 2023 - [FifthTry](https://www.fifthtry.com/)
 
 -- doc-home: Welcome to your fastn powered website.
 github-url: https://github.com/fastn-community/site-doc
@@ -658,7 +658,7 @@ min-height.fixed.vh if { full-screen || ftd.is_empty($doc-home.toc) }: 50
 -- end: ftd.column
 
 -- fastn-footer:
-copyright: $copyright
+copyright: $copyright-info
 site-logo: $fastn-logo
 powered-by-text: Powered by
 powered-by-link: https://fastn.io/
