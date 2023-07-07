@@ -186,7 +186,8 @@ optional string typography:
 optional string current-package: 
 optional body body: 
 children doc-childs:
-string site-title: Documentation
+optional string site-title: 
+optional ftd.image-src site-logo: $assets.files.static.fastn.svg
 string site-url: index.html
 pr.toc-item list toc: $sitemap.toc
 pr.toc-item list sections: $sitemap.sections
@@ -197,7 +198,7 @@ boolean show-tabs: false
 boolean copy: true
 string $copy-text: null
 boolean $mouse-in: false
-string clean-code: $ftd.clean-code(a = $doc-home.current-package, lang = ftd)
+string clean-code: $combine-string(a = -- fastn.dependency:, b = $doc-home.current-package)
 boolean $sidebar-open: false
 
 -- ftd.column:
@@ -253,19 +254,23 @@ margin-right.px: 24
 width: fill-container
 align-self: center
 
--- ftd.column:
+-- ftd.row:
+spacing.fixed.px: 24
+align-content: center
+
+-- ftd.image:
+if: { doc-home.site-logo != NULL }
+src: $doc-home.site-logo
+height.fixed.px: 28
+link: $doc-home.site-url
 
 -- ftd.text: $doc-home.site-title
+if: { doc-home.site-title != NULL }
 role: $inherited.types.heading-small
 color: $inherited.colors.text-strong
 link: $doc-home.site-url
 
--- ftd.text: a fastn package
-role: $inherited.types.fine-print
-color: $inherited.colors.text-strong
-padding-top.px: 4
-
--- end: ftd.column
+-- end: ftd.row
 
 -- end: ftd.column
 
@@ -303,7 +308,7 @@ z-index: 999
 -- ftd.image:
 if: { full-screen  && !ftd.is_empty($doc-home.toc)}
 src: $assets.files.static.push-right.svg
-width.fixed.px: 34
+width.fixed.px: 24
 align-self: center
 cursor: pointer
 $on-click$: $ftd.set-bool($a = $full-screen, v = false)
@@ -322,14 +327,14 @@ height: fill-container
 
 -- ftd.column:
 anchor: parent
-right.px: -42
+right.px: -5
 top.px: 10
 z-index: 999
 
 -- ftd.image:
 if: { !full-screen  && !ftd.is_empty($doc-home.toc)}
 src: $assets.files.static.push-left.svg
-width.fixed.px: 34
+width.fixed.px: 24
 align-self: center
 cursor: pointer
 $on-click$: $ftd.set-bool($a = $full-screen, v = true)
@@ -360,6 +365,13 @@ role: $inherited.types.heading-medium
 color: $inherited.colors.text-strong
 region: h1
 width: fill-container
+
+-- ftd.image:
+if: { doc-home.github-url != NULL }
+src: $assets.files.static.icon-github.svg
+width.fixed.px: 24
+link: $doc-home.github-url
+open-in-new-tab: true
 
 -- end: ftd.row
 
@@ -1944,3 +1956,62 @@ toc: $obj
 -- end: menu-mobile
 
 
+
+
+
+
+
+
+
+
+-- component iframe:
+string src:
+optional ftd.resizing width:
+optional ftd.resizing height:
+
+-- ftd.iframe:
+src: $iframe.src
+height: $iframe.height
+width: $iframe.width
+min-height.fixed.px: 400
+margin-bottom.px: 24
+
+-- end: iframe
+
+
+
+
+
+
+
+
+
+
+-- component youtube:
+caption v:
+optional ftd.resizing width: fill-container
+optional ftd.resizing height:
+
+-- ftd.iframe:
+youtube: $youtube.v
+min-height.fixed.px: 400
+width: $youtube.width
+height: $youtube.height
+margin-bottom.px: 24
+
+-- end: youtube
+
+
+
+
+
+
+
+
+
+
+-- string combine-string(a,b):
+string a:
+string b:
+
+a + " " + b
