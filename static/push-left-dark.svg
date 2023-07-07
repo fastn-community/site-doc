@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-	<path d="M21,4V20a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1V4A1,1,0,0,1,4,3H20A1,1,0,0,1,21,4Zm-4,8H7m3-3L7,12l3,3" style="fill: none; stroke: #FFFFFF; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5;"></path>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="100.000000pt" height="100.000000pt" viewBox="0 0 100.000000 100.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)"
+fill="#666666" stroke="none">
+<path d="M345 710 l-210 -210 212 -212 c170 -169 215 -210 225 -200 10 10 -28
+53 -187 212 l-200 200 199 199 c175 175 212 221 178 221 -4 0 -102 -95 -217
+-210z"/>
+<path d="M605 710 l-210 -210 212 -212 c170 -169 215 -210 225 -200 10 10 -28
+53 -187 212 l-200 200 199 199 c175 175 212 221 178 221 -4 0 -102 -95 -217
+-210z"/>
+</g>
 </svg>
