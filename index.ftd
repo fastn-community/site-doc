@@ -247,6 +247,7 @@ margin-right.px: 24
 -- end: ftd.mobile
 
 -- ftd.image:
+if: { ftd.device == "desktop" }
 src: $assets.files.static.minify-icon.svg
 width.fixed.px: 24
 $on-click$: $ftd.toggle($a = $full-screen)
