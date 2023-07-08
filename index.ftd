@@ -303,19 +303,18 @@ background.solid: $inherited.colors.background.step-1
 width: fill-container
 align-self: center
 spacing.fixed.px: 48
-padding-horizontal.px: 48
-padding-horizontal.px if { ftd.device == "mobile" }: 24
-
+padding-horizontal.px: 24
 
 -- ftd.desktop:
 
 -- ftd.column:
 if: { !full-screen  && !ftd.is_empty($doc-home.toc)}
 width.fixed.percent: 25
-border-right-width.px: 1
+border-right-width.px: 4
 border-color: $inherited.colors.border
-border-style: ridge
+border-style: double
 height: fill-container
+padding-top.px: 24
 
 -- render-toc:
 if: { !full-screen && !ftd.is_empty($doc-home.toc) }
