@@ -16,7 +16,6 @@ dark: https://fastn.com/-/fastn.com/images/fastn-dark.svg
 
 -- doc-home: Welcome to your fastn powered website.
 github-url: https://github.com/fastn-community/site-doc
-color-scheme: Default $inherited
 typography: fifthtry.github.io/doc-site-typography
 current-package: fastn-community.github.io/site-doc
 show-tabs: false
@@ -197,13 +196,12 @@ boolean show-tabs: false
 boolean copy: true
 string $copy-text: null
 boolean $mouse-in: false
-string clean-code: $ftd.clean-code(a = $doc-home.current-package, lang = ftd)
+string clean-code: $combine-string(a = -- fastn.dependency:, b = $doc-home.current-package)
 boolean $sidebar-open: false
 
 -- ftd.column:
 width: fill-container
 background.solid: $inherited.colors.background.base
-
 
 -- ftd.column:
 if: { doc-home.sidebar-open }
@@ -229,8 +227,7 @@ sub-sections: $doc-home.sub-sections
 -- ftd.column:
 width: fill-container
 padding-vertical.px: 24
-padding-horizontal.px: 48
-padding-horizontal.px if { ftd.device == "mobile" }: 24
+padding-horizontal.px: 24
 background.solid: $inherited.colors.background.step-2
 align-content: center
 
@@ -249,9 +246,15 @@ margin-right.px: 24
 
 -- end: ftd.mobile
 
+-- ftd.image:
+src: $assets.files.static.minify-icon.svg
+width.fixed.px: 24
+$on-click$: $ftd.toggle($a = $full-screen)
+
 -- ftd.column:
 width: fill-container
 align-self: center
+margin-left.px: 24
 
 -- ftd.column:
 
@@ -272,12 +275,20 @@ padding-top.px: 4
 -- ftd.row:
 align-content: center
 spacing.fixed.px: 18
+margin-right.px if { doc-home.github-url != NULL }: 24
 
 -- header-links:
 $loop$: $doc-home.sections as $obj
 sections: $obj
 
 -- end: ftd.row
+
+-- ftd.image:
+if: { doc-home.github-url != NULL }
+src: $assets.files.static.icon-github.svg
+width.fixed.px: 24
+link: $doc-home.github-url
+open-in-new-tab: true
 
 -- end: ftd.row
 
@@ -294,21 +305,6 @@ spacing.fixed.px: 48
 padding-horizontal.px: 48
 padding-horizontal.px if { ftd.device == "mobile" }: 24
 
--- ftd.column:
-anchor: parent
-left.px: 10
-top.px: 10
-z-index: 999
-
--- ftd.image:
-if: { full-screen  && !ftd.is_empty($doc-home.toc)}
-src: $assets.files.static.push-right.svg
-width.fixed.px: 34
-align-self: center
-cursor: pointer
-$on-click$: $ftd.set-bool($a = $full-screen, v = false)
-
--- end: ftd.column
 
 -- ftd.desktop:
 
@@ -319,22 +315,6 @@ border-right-width.px: 1
 border-color: $inherited.colors.border
 border-style: ridge
 height: fill-container
-
--- ftd.column:
-anchor: parent
-right.px: -42
-top.px: 10
-z-index: 999
-
--- ftd.image:
-if: { !full-screen  && !ftd.is_empty($doc-home.toc)}
-src: $assets.files.static.push-left.svg
-width.fixed.px: 34
-align-self: center
-cursor: pointer
-$on-click$: $ftd.set-bool($a = $full-screen, v = true)
-
--- end: ftd.column
 
 -- render-toc:
 if: { !full-screen && !ftd.is_empty($doc-home.toc) }
@@ -1944,3 +1924,16 @@ toc: $obj
 -- end: menu-mobile
 
 
+
+
+
+
+
+
+
+
+-- string combine-string(a,b):
+string a:
+string b:
+
+a + " " + b
