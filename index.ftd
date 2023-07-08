@@ -555,39 +555,6 @@ open-in-new-tab: true
 
 -- end: ftd.row
 
--- ftd.text: GitHub URL:
-if: { doc-home.github-url != NULL }
-role: $inherited.types.copy-small
-color: $inherited.colors.text-strong
-min-width.fixed.px: 170
-
--- ftd.text: $doc-home.github-url
-if: { doc-home.github-url != NULL }
-role: $inherited.types.fine-print
-color: $inherited.colors.text
-
--- ftd.text: Color Scheme:
-if: { doc-home.color-scheme != NULL }
-role: $inherited.types.copy-small
-color: $inherited.colors.text-strong
-min-width.fixed.px: 170
-
--- ftd.text: $doc-home.color-scheme
-if: { doc-home.color-scheme != NULL }
-role: $inherited.types.fine-print
-color: $inherited.colors.text
-
--- ftd.text: Typography:
-if: { doc-home.typography != NULL }
-role: $inherited.types.copy-small
-color: $inherited.colors.text-strong
-min-width.fixed.px: 170
-
--- ftd.text: $doc-home.typography
-if: { doc-home.typography != NULL }
-role: $inherited.types.fine-print
-color: $inherited.colors.text
-
 -- end: ftd.column
 
 -- end: ftd.column
