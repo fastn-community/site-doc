@@ -303,7 +303,8 @@ background.solid: $inherited.colors.background.step-1
 width: fill-container
 align-self: center
 spacing.fixed.px: 48
-padding-horizontal.px: 24
+padding-horizontal.px: 48
+padding-horizontal.px if {ftd.device == "mobile"}: 24
 
 -- ftd.desktop:
 
@@ -326,7 +327,8 @@ toc-obj: $doc-home.toc
 
 -- ftd.column:
 width: fill-container
-margin-vertical.px: 48
+margin-vertical.px: 44
+margin-vertical.px if { ftd.device == "mobile" }: 24
 
 -- ftd.row:
 if: { doc-home.title != NULL }
