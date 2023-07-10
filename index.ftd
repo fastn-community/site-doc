@@ -1969,6 +1969,35 @@ id: $markdown.id
 
 
 
+-- component button:
+caption title:
+optional string link:
+boolean $mouse-in: false
+
+-- ftd.text: $button.title
+role: $inherited.types.button-medium
+color if { button.mouse-in }: $inherited.colors.cta-primary.text
+background.solid if { button.mouse-in }: $inherited.colors.cta-primary.base
+background.solid: $inherited.colors.cta-tertiary.base
+color: $inherited.colors.cta-tertiary.text
+padding.px: 8
+border-radius.px: 4
+link: $button.link
+$on-mouse-enter$: $ftd.set-bool($a = $button.mouse-in, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $button.mouse-in, v = false)
+open-in-new-tab: true
+
+-- end: button
+
+
+
+
+
+
+
+
+
+
 -- string combine-string(a,b):
 string a:
 string b:
