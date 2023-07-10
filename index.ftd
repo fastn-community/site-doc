@@ -1947,6 +1947,28 @@ margin-bottom.px: 24
 
 
 
+-- component markdown:
+caption or body body:
+optional string id:
+
+-- ftd.text: 
+text: $markdown.body
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+width: fill-container
+id: $markdown.id
+
+-- end: markdown
+
+
+
+
+
+
+
+
+
+
 -- string combine-string(a,b):
 string a:
 string b:
