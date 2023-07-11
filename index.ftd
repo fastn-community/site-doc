@@ -1985,7 +1985,6 @@ border-radius.px: 4
 link: $button.link
 $on-mouse-enter$: $ftd.set-bool($a = $button.mouse-in, v = true)
 $on-mouse-leave$: $ftd.set-bool($a = $button.mouse-in, v = false)
-open-in-new-tab: true
 
 -- end: button
 
