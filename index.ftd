@@ -2041,7 +2041,7 @@ width if { image.width != NULL }: $image.width
 role: $inherited.types.copy-regular
 color: $inherited.colors.text
 
-body: $image.body
+$image.body
 
 -- end: ftd.column
 
