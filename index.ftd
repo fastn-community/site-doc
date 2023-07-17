@@ -316,6 +316,7 @@ border-color: $inherited.colors.border
 border-style: double
 height: fill-container
 padding-top.px: 24
+padding-right.px: 24
 
 -- render-toc:
 if: { !full-screen && !ftd.is_empty($doc-home.toc) }
