@@ -1974,6 +1974,7 @@ id: $markdown.id
 caption title:
 optional string link:
 boolean $mouse-in: false
+boolean open-in-new-tab: false
 
 -- ftd.text: $button.title
 role: $inherited.types.button-medium
@@ -1986,6 +1987,7 @@ border-radius.px: 4
 link: $button.link
 $on-mouse-enter$: $ftd.set-bool($a = $button.mouse-in, v = true)
 $on-mouse-leave$: $ftd.set-bool($a = $button.mouse-in, v = false)
+open-in-new-tab: $button.open-in-new-tab
 
 -- end: button
 
