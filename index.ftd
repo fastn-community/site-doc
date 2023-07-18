@@ -266,8 +266,12 @@ link: $doc-home.site-url
 
 -- ftd.text: a fastn package
 role: $inherited.types.fine-print
-color: $inherited.colors.text-strong
+color: #999999
+color if { doc-home.mouse-in }: $inherited.colors.cta-primary.base
 padding-top.px: 4
+link: https://fastn.com/
+$on-mouse-enter$: $ftd.set-bool($a = $doc-home.mouse-in, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $doc-home.mouse-in, v = false)
 
 -- end: ftd.column
 
