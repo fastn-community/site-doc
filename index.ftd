@@ -915,6 +915,7 @@ border-bottom-width.px: 2
 border-color: $inherited.colors.background.step-2
 border-color if { header-links.sections.is-active }: $inherited.colors.cta-primary.base
 link: $header-links.sections.url
+white-space: nowrap
 
 -- end: ftd.column
 
