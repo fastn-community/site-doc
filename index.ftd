@@ -1781,10 +1781,12 @@ width: fill-container
 -- component header:
 caption title: 
 optional body body:
+optional string id:
 
 -- ftd.column:
 width: fill-container
 spacing.fixed.px: 18
+id: $header.id
 
 -- ftd.text: $header.title
 role: $inherited.types.heading-small
