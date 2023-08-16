@@ -278,6 +278,8 @@ open-in-new-tab: true
 
 -- end: ftd.column
 
+-- ftd.desktop:
+
 -- ftd.row:
 align-content: center
 spacing.fixed.px: 18
@@ -288,6 +290,8 @@ $loop$: $doc-home.sections as $obj
 sections: $obj
 
 -- end: ftd.row
+
+-- end: ftd.desktop
 
 -- ftd.image:
 if: { doc-home.github-url != NULL }
