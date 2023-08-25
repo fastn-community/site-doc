@@ -198,6 +198,19 @@ string $copy-text: null
 boolean $mouse-in: false
 string clean-code: $combine-string(a = -- fastn.dependency:, b = $doc-home.current-package)
 boolean $sidebar-open: false
+string document-title: fastn document site template. Build Your Own documentation site with Ease
+string document-description: Simple, easy-to-use fastn documentation template to write your fastn package document. Change colours and typography effortlessly.
+ftd.raw-image-src document-image: https://fastn.com/-/fastn.com/images/fastn-logo.png
+
+-- ftd.document:
+title if { doc-home.document-title != NULL }: $doc-home.document-title
+title: $doc-home.title
+og-title if { doc-home.document-title != NULL }: $doc-home.document-title
+og-title: $doc-home.title
+twitter-title if { doc-home.document-title != NULL }: $doc-home.document-title
+twitter-title: $doc-home.title
+description: $doc-home.document-description
+og-image: $doc-home.document-image
 
 -- ftd.column:
 width: fill-container
@@ -627,6 +640,8 @@ types: $typo.types
 -- dms.dark-mode-switcher-float:
 
 -- end: ftd.column
+
+-- end: ftd.document
 
 -- end: doc-home
 
